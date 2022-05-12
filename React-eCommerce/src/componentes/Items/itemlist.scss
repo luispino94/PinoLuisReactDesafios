@@ -1,0 +1,34 @@
+section{
+    width: 100%;
+    height: 100%;
+.container-section {
+
+    display: grid;
+     grid-template-columns:repeat(auto-fill, minmax(250px,1fr));
+    grid-auto-rows: repeat(3,1fr);
+    height: 100%;
+    width: 100%;   
+
+    .container-items {
+        height: 100%;
+        width: 100%;
+        padding: 0.62rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+    }
+    .container-titulo{
+        padding: 0.3125rem;
+        font-size: 1.1rem;
+        color: #404e5a;
+        font-weight: 650;
+    }
+    .img-item {
+                width: 250px;
+                height: 250px;
+                border: 1px solid white;
+                }
+}
+}
