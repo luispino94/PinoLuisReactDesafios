@@ -30,10 +30,8 @@ const Item = ()=> {
            { loading ?
            <h2>cargando...</h2>
            :
-           productos.map((prod)=><div key={prod.id}
-                                    className = "container-section"    
-                                    >
-                                    <div className='container-items'>
+           productos.map((prod)=>
+                                    <div key={prod.id} className='container-items'>
                                         <div className='container-titulo'>
                                         {`${prod.name}`}
                                         </div>
@@ -46,7 +44,7 @@ const Item = ()=> {
                                         </button>
                                         </div>
                                     </div>    
-                                </div>)
+                             )
         }
        </section>
     )

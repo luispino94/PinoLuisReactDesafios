@@ -31,4 +31,52 @@ export const productList = [
       stock: 5,
       id: 3,
     },
+    {
+      name: 'aka-47',
+      price: 500,
+      skin:
+        'https://www.theloadout.com/wp-content/uploads/2021/05/best-csgo-skins-neon-rider-ak47.jpeg',
+      stock: 5,
+      id: 3,
+    },
+    {
+      name: 'aka-47',
+      price: 500,
+      skin:
+        'https://www.theloadout.com/wp-content/uploads/2021/05/best-csgo-skins-neon-rider-ak47.jpeg',
+      stock: 5,
+      id: 3,
+    },
+    {
+      name: 'aka-47',
+      price: 500,
+      skin:
+        'https://www.theloadout.com/wp-content/uploads/2021/05/best-csgo-skins-neon-rider-ak47.jpeg',
+      stock: 5,
+      id: 3,
+    },
+    {
+      name: 'aka-47',
+      price: 500,
+      skin:
+        'https://www.theloadout.com/wp-content/uploads/2021/05/best-csgo-skins-neon-rider-ak47.jpeg',
+      stock: 5,
+      id: 3,
+    },
+    {
+      name: 'aka-47',
+      price: 500,
+      skin:
+        'https://www.theloadout.com/wp-content/uploads/2021/05/best-csgo-skins-neon-rider-ak47.jpeg',
+      stock: 5,
+      id: 3,
+    },
+    {
+      name: 'aka-47',
+      price: 500,
+      skin:
+        'https://www.theloadout.com/wp-content/uploads/2021/05/best-csgo-skins-neon-rider-ak47.jpeg',
+      stock: 5,
+      id: 3,
+    },
   ];
