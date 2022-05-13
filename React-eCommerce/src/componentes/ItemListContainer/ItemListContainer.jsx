@@ -1,17 +1,35 @@
-import ItemCount from "../Items/ItemCount"
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { productList } from '../../datos/datos.js';
+import ItemList from '../Items/ItemList.jsx';
 
 
+const getFetch = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve(productList);
+  }, 2000);
+});
 
+const ItemListContainer = () => {
+  const [productos, setProductos] = useState([])
+  const [loading, setLoading] = useState (true)
 
-const ItemListContainer = ({greeting = 'titulo'}) => {
-
+/*Con useEffect + los corchetes hacemos que cargue una sola vez y en segundo plano ( o sea, un array, se ejecuta una sola vez
+  )  */ 
+  useEffect(() => { 
+     getFetch 
+     .then (respuesta => setProductos (respuesta))
+     .catch ((err)=> console.log (err))
+     .finally(()=>setLoading (false)) 
+   }, []); 
 
   return (
- 
+          /* Acá termino importando todo lo que fui armando en mi item >itemList  */
+    <section>
     <div>
-      <h1 className="estilos-greetin">{greeting}</h1>
-      <ItemCount  stock={5} initial={1} onAdd={(item)=>alert(`¡Felicidades, agregaste ${item} productos a tu carrito!`)} />
+        {loading ? (<h2>Cargando...</h2>) : <ItemList productos={productList}/>}
     </div>
+  </section>  
 
   )
 }

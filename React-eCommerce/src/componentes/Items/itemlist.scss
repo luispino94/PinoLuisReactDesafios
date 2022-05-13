@@ -1,34 +1,77 @@
-section{
-    width: 100%;
-    height: 100%;
-.container-section {
+                    //CLASE DE LOS ITEMS, ITEM LIST
 
+.item-lista-grid{
+    width: 100%;
     display: grid;
-     grid-template-columns:repeat(auto-fill, minmax(250px,1fr));
-    grid-auto-rows: repeat(3,1fr);
-    height: 100%;
-    width: 100%;   
+    grid-template-columns:repeat(auto-fill, minmax(250px,1fr));
+    grid-auto-rows: repeat(auto-fill,minmax(250px,1fr));
+    gap:5px;
+    margin: 1px;
 
     .container-items {
         height: 100%;
         width: 100%;
-        padding: 0.62rem;
-        display: flex;
-        flex-direction: column;
         justify-content: center;
-        justify-items: center;
         align-items: center;
+        text-align: center;
+        border: 1px solid rgb(4, 4, 4);
+        background-color: rgba(0, 0, 0, 0.735);
+
     }
     .container-titulo{
         padding: 0.3125rem;
-        font-size: 1.1rem;
-        color: #404e5a;
-        font-weight: 650;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: white;
     }
     .img-item {
-                width: 250px;
-                height: 250px;
+                width: 14.625rem;
+                height: 15.625rem;
                 border: 1px solid white;
                 }
+    .container-price {
+        color: white;
+        font-size: 1.2rem;
+        padding: 0.312rem;
+        font-weight: 600;
+        text-align: center;
+        font-family: 'Courier New', Courier, monospace;
+        
+    }
+    
+    .container-button{
+    width: 100%;
+    
+    align-items: center;
+    justify-content: center;
+
+    .btn-item-add {
+        cursor: pointer;
+        font-size: 1.2rem;
+        padding: 10px;
+    }
+    .btn-item {
+        justify-content: space-between;
+        cursor: pointer;
+        padding: 0.312rem;
+        font-size: 1rem;
+        
+    }
+    .item-count {
+        color: white;
+        font-weight: 700;
+        font-size: 1.3rem;
+        padding: 0.312rem;
+        margin: 0.62rem;
+    }}
+    
+    .btn-item-add:hover {
+    color:  rgb(171, 232, 179);
+    }
+
 }
-}
+
+                    //CLASE BOTON DE ITEM
+
+
+

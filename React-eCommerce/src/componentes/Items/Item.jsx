@@ -1,54 +1,24 @@
-import { useState, useEffect } from 'react';
-import { productList } from '../../datos/datos.js';
-import './itemlist.scss'
+import React from 'react';
+import ItemCount from './ItemCount.jsx';
+import './itemlist.scss';
 
-const getFetch = new Promise ((resolve)=>{
-    setTimeout(() => {
+
+/*Acá creo mi componente ITEM , al cual extraigo las propiedades de datos,
+armo la card dinamica y importo mi ItemCount para pasarle el contador a cada card*/
+const Item = ({name,price,skin,id})=> {
+ 
+return (
+                    /*CARD*/    
+     <div key={id} className='container-items'>
+         <h1 className='container-titulo'>{name}</h1>
+
+         <div className='container-imagen'>
+         <img src ={skin} alt="" className='img-item'/> 
+         </div>
+         <span className='container-price'>{`$ ${price}`}</span>
+         <ItemCount  stock={5} initial={1} onAdd={(item)=>alert(`¡Felicidades, agregaste ${item} productos a tu carrito!`)} />
+     </div>    
         
-        resolve (productList);
-    }, 4000);
-})
-
-
-const Item = ()=> {
-    const [productos, setProductos] = useState([])
-    const [loading, setLoading] = useState (true)
-
-  /*Con useEffect + los corchetes hacemos que cargue una sola vez y en segundo plano ( o sea, un array, se ejecuta una sola vez
-    )  */ 
-    useEffect(() => { 
-       getFetch 
-       .then (respuesta => setProductos (respuesta))
-       .catch ((err)=> console.log (err))
-       .finally(()=>setLoading (false)) 
-     }, []); /*Los corchetes van acá*/ 
-    
-
-
-    return (
-       <section>
-           { loading ?
-           <h2>cargando...</h2>
-           :
-           productos.map((prod)=><div key={prod.id}
-                                    className = "container-section"    
-                                    >
-                                    <div className='container-items'>
-                                        <div className='container-titulo'>
-                                        {`${prod.name}`}
-                                        </div>
-                                        <div className='container-imagen'>
-                                        <img src ={prod.skin} alt=""  className='img-item'/> 
-                                        </div>
-                                        <div className='container-button'>
-                                        <button className='btn-button-item'>
-                                            detalle del producto
-                                        </button>
-                                        </div>
-                                    </div>    
-                                </div>)
-        }
-       </section>
     )
 }
 

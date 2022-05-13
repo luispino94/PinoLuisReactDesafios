@@ -24,11 +24,11 @@ export const productList = [
       id: 3,
     },
     {
-      name: 'aka-47',
-      price: 500,
+      name: 'M4A4',
+      price: 700,
       skin:
-        'https://www.theloadout.com/wp-content/uploads/2021/05/best-csgo-skins-neon-rider-ak47.jpeg',
+        'https://static1-es.millenium.gg/articles/3/41/40/3/@/213990-m4a4-amp_main_img-1.jpg',
       stock: 5,
-      id: 3,
+      id: 4,
     },
   ];
