@@ -1,33 +1,36 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { productList } from '../../datos/datos.js';
+import { useParams } from 'react-router-dom';
+import { getFetch } from '../../datos/datos.js'
 import ItemList from '../Items/ItemList.jsx';
 
-
-const getFetch = new Promise((resolve) => {
-  setTimeout(() => {
-    resolve(productList);
-  }, 2000);
-});
 
 const ItemListContainer = () => {
   const [productos, setProductos] = useState([])
   const [loading, setLoading] = useState (true)
-
+  const {id} = useParams()
 /*Con useEffect + los corchetes hacemos que cargue una sola vez y en segundo plano ( o sea, un array, se ejecuta una sola vez
   )  */ 
   useEffect(() => { 
-     getFetch 
-     .then (respuesta => setProductos (respuesta))
+   if (id){ 
+     getFetch ()
+     .then (respuesta => setProductos (respuesta.filter((prods) => prods.categoria === id)))
      .catch ((err)=> console.log (err))
-     .finally(()=>setLoading (false)) 
-   }, []); 
+     .finally(()=>setLoading (false))
+    } else {
+      getFetch()
+      .then (respuesta =>setProductos(respuesta))
+      .catch((err)=> console.log (err))
+      .finally(()=> setLoading(false))
+    }
+  }, [id])
+   
 
   return (
           /* Acá termino importando todo lo que fui armando en mi item >itemList  */
     <section>
     <div>
-        {loading ? (<h2>Cargando...</h2>) : <ItemList productos={productList}/>}
+        {loading ? (<h2>Cargando...</h2>) : <ItemList productos={productos}/>}
     </div>
   </section>  
 
