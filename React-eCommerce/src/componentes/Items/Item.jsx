@@ -12,14 +12,16 @@ return (
                     /*CARD*/  
 
      <div  className='container-items'>
-          <Link to={`/detalle/${prod.id}`}>
+        
          <h1 className='container-titulo'>{prod.name}</h1>
 
          <div className='container-imagen'>
          <img src ={prod.skin} alt="" className='img-item'/> 
          </div>
-         <span className='container-price'>{`$ ${price}`}</span>
-         <ItemCount  stock={5} initial={1} onAdd={(item)=>alert(`¡Felicidades, agregaste ${item} productos a tu carrito!`)} />
+        <Link to={`/detalle/${prod.id}`}>
+        <button>
+            <p className='detalle-item'>Ver Detalle</p>
+        </button>
          </Link>
      </div>    
         

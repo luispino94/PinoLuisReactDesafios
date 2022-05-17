@@ -1,13 +1,13 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
 import {getFetch} from '../../datos/datos.js'
 import ItemDetail from '../Items/ItemDetail.jsx';
 
 
 const ItemListDetail = () => {
     const [producto, setProductos] = useState({})
-    const [detalleId] = useParams ()
+    const {detalleId} = useParams ()
   
   /*Con useEffect + los corchetes hacemos que cargue una sola vez y en segundo plano ( o sea, un array, se ejecuta una sola vez
     )  */ 
@@ -20,11 +20,9 @@ const ItemListDetail = () => {
  
     return (
             /* Acá termino importando todo lo que fui armando en mi item >itemList  */
-      <section>
-      <div>
+
           <ItemDetail producto={producto}/>
-      </div>
-    </section>
+
 )}
 
 export default ItemListDetail

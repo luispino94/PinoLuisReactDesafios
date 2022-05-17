@@ -28,11 +28,11 @@ const ItemListContainer = () => {
 
   return (
           /* Acá termino importando todo lo que fui armando en mi item >itemList  */
-    <section>
-    <div>
+    
+    <div className='item-lista-grid'>
         {loading ? (<h2>Cargando...</h2>) : <ItemList productos={productos}/>}
     </div>
-  </section>  
+ 
 
   )
 }

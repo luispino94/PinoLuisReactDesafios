@@ -24,7 +24,7 @@ const productos = [
         'https://www.theloadout.com/wp-content/uploads/2021/05/best-csgo-skins-neon-rider-ak47.jpeg',
       stock: 5,
       categoria : 'rifles',
-      id: 3,
+      id: '3',
     },
     {
       name: 'M4A4',
