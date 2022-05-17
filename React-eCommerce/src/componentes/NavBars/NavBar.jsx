@@ -1,22 +1,26 @@
 import CartWidget from '../CartWidget/CartWidget'
 import  logo from '../../imagenes/logo 112.png'
 import './_Estilosnavbar.scss'
+import { Link } from 'react-router-dom';
 
 function NavBar (){
  return (
 <header>
-    <nav className="navbar-nav">
-        <div className="container-nav">            
-            <img className="navbar-logo" src = {logo} alt="#"></img>
-            <a className= "navbar-vinculo" href="#">Hetzen Company</a>           
-            <ul className ="nav-list">
-                <li className ="nav-item"><a className="nav-link" href='#'>Tienda</a></li>
-                <li className ="nav-item"><a className="nav-link" href='#'>Skins </a></li>
-                <li className ="nav-item"><a className="nav-link" href='#'>Comprar</a></li>
-            <CartWidget/>
-            </ul>   
-        </div>
-    </nav>
+<nav className="navbar-nav">
+    <div className="container-nav">            
+        <Link to='/'>  
+            <img className="navbar-logo" src = {logo} alt="#"></img> 
+        </Link >
+            <i className= "navbar-vinculo">Hetzen Company</i>
+
+        <ul className ="nav-list">
+            <Link to='/categoria/sniper'><li className ="nav-item"><i className="nav-link">Terrorista</i></li></Link>
+            <Link to='/categoria/rifles'><li className ="nav-item"><i className="nav-link">Policia </i></li></Link>   
+            <li className ="nav-item"><i className="nav-link">Comprar</i></li>
+            <li className ="nav-item"><CartWidget/></li>
+        </ul>   
+    </div>
+</nav>
 </header>
     )}
     

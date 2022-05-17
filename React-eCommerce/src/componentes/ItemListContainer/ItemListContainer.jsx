@@ -25,7 +25,7 @@ const ItemListContainer = () => {
     }
   }, [id])
    
-
+console.log (id);
   return (
           /* Acá termino importando todo lo que fui armando en mi item >itemList  */
     

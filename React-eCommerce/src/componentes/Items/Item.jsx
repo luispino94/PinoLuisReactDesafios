@@ -1,7 +1,7 @@
 import React from 'react';
-import ItemCount from './ItemCount.jsx';
 import './itemlist.scss';
 import { Link } from "react-router-dom"
+import { faProductHunt } from '@fortawesome/free-brands-svg-icons';
 
 
 /*Acá creo mi componente ITEM , al cual extraigo las propiedades de datos,
@@ -16,7 +16,12 @@ return (
          <h1 className='container-titulo'>{prod.name}</h1>
 
          <div className='container-imagen'>
+            <div dangerouslySetInnerHTML={{__html:prod.test}}></div>
          <img src ={prod.skin} alt="" className='img-item'/> 
+         </div>
+         <div>
+         
+        
          </div>
         <Link to={`/detalle/${prod.id}`}>
         <button>

@@ -13,7 +13,7 @@ header {
         align-items: center;
         
     .navbar-logo{
-        grid-column: 2/4;
+        grid-column: 3/5;
         height: 3.75rem;
         display: inline;
         font-size: 1rem;
@@ -23,6 +23,7 @@ header {
         font-size: 1.2rem;
         letter-spacing: 1px;
         font-family: var(--font-water);
+        grid-column: 6/7;
     }
     .navbar-vinculo:hover {
         color: orangered;
@@ -31,7 +32,7 @@ header {
     } 
     
     .nav-list{
-        grid-column:6 /-1;
+        grid-column:8 /-1;
         align-items: center;
         text-align: center;
 
