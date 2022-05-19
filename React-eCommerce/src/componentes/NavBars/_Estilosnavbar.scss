@@ -11,24 +11,25 @@ header {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
     
     .container-logo{
-        grid-column: 2/4;
+        grid-column: 2/3;
     }
     .navbar-logo{
        
         height: 3.75rem;
         display: inline;
         font-size: 1rem;
-        margin-left: 10px;
+      
     }
     .navbar-vinculo {
         color: white;
         font-size: 1.4rem;
+        text-align: center;
         letter-spacing: 1px;
         font-family: var(--font-water);
-        grid-column: 4/7;
+        grid-column: 4/6;
     }
     .navbar-vinculo:hover {
         color: rgba(250, 141, 8, 0.936);
@@ -37,9 +38,9 @@ header {
     } 
     
     .nav-list{
-        grid-column:8/-1;
+        grid-column:7/-1;
         align-items: center;
-        text-align: end;
+        text-align: right;
         margin-right: 1.25rem;
     .nav-item {
      margin: 0.312rem;

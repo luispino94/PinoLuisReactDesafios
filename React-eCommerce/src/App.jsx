@@ -12,7 +12,6 @@ import CartWidget from './componentes/CartWidget/CartWidget';
   https://www.pluralsight.com/guides/return-html-elements-in-json  */
 
 function App() {
-
   return (
   <BrowserRouter> 
     <div className="App">
