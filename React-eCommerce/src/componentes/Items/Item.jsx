@@ -16,7 +16,6 @@ return (
          <h1 className='container-titulo'>{prod.name}</h1>
 
          <div className='container-imagen'>
-            <div dangerouslySetInnerHTML={{__html:prod.test}}></div>
          <img src ={prod.skin} alt="" className='img-item'/> 
          </div>
          <div>

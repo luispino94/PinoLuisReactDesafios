@@ -8,7 +8,7 @@ function NavBar (){
 <header>
 <nav className="navbar-nav">
     <div className="container-nav">            
-        <Link to='/'>  
+        <Link className='container-logo' to='/'>  
             <img className="navbar-logo" src = {logo} alt="#"></img> 
         </Link >
             <i className= "navbar-vinculo">Hetzen Company</i>

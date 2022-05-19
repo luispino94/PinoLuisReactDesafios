@@ -3,7 +3,7 @@ header {
 }
 .navbar-nav {
     width: 100%;
-    border: 1px solid black;
+   
 
     .container-nav {
         background-color: rgba(0, 0, 0, 0.886);
@@ -11,31 +11,36 @@ header {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         align-items: center;
-        
+        justify-content: center;
+    
+    .container-logo{
+        grid-column: 2/4;
+    }
     .navbar-logo{
-        grid-column: 3/5;
+       
         height: 3.75rem;
         display: inline;
         font-size: 1rem;
+        margin-left: 10px;
     }
     .navbar-vinculo {
         color: white;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         letter-spacing: 1px;
         font-family: var(--font-water);
-        grid-column: 6/7;
+        grid-column: 4/7;
     }
     .navbar-vinculo:hover {
-        color: orangered;
+        color: rgba(250, 141, 8, 0.936);
     }
 
     } 
     
     .nav-list{
-        grid-column:8 /-1;
+        grid-column:8/-1;
         align-items: center;
-        text-align: center;
-
+        text-align: end;
+        margin-right: 1.25rem;
     .nav-item {
      margin: 0.312rem;
      display: inline;
@@ -44,12 +49,11 @@ header {
     .nav-link {
         color: white;
         padding: 0.312rem;
-        font-family: var(--font);
         font-size: 1em;
         transition: all .5 ease;
     }
     .nav-link:hover{
-        color: orangered;
+        color: rgba(250, 141, 8, 0.936);
         
     }
 
