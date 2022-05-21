@@ -2,7 +2,8 @@ import ItemListContainer from './componentes/ItemListContainer/ItemListContainer
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import NavBar from './componentes/NavBars/NavBar';
 import ItemListDetail from './componentes/ItemListContainer/ItemListDetail';
-import CartWidget from './componentes/CartWidget/CartWidget';
+import CartContexProvider from './componentes/Contexto/cartContext';
+import Cart from './componentes/cart/Cart';
 
 
 /* Paginas: 
@@ -14,16 +15,18 @@ import CartWidget from './componentes/CartWidget/CartWidget';
 function App() {
   return (
   <BrowserRouter> 
+    <CartContexProvider>
     <div className="App">
       <NavBar/>
         <Routes>
           <Route path='/' element = { <ItemListContainer/> } />
           <Route path='/categoria/:id' element = { <ItemListContainer/>}/>
           <Route path='/detalle/:detalleId' element = { <ItemListDetail/>}/>
-          <Route path='/cart' element = { <CartWidget/>}/>
+          <Route path='/cart' element = { <Cart/>}/>
           <Route path='/*' element = {<Navigate to = '/' replace /> } />
         </Routes>
     </div>
+    </CartContexProvider>  
   </BrowserRouter>
   );
 }
