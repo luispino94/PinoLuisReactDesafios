@@ -96,7 +96,7 @@ const productos = [
       modelo: 
       '<iframe title="★ Karambit | Lore" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/1d1211cd7b664b5fbe0a86db31e356e9/embed?autostart=1"> </iframe>',
       categoria : 'knife',
-      id: '8', 
+      id: '9', 
     },
     {
       name: '★ Flip Knife ',
@@ -107,7 +107,7 @@ const productos = [
       modelo: 
       '<iframe title="★ Flip Knife | Autotronic" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/33bb90c3d0934e279917ff5d262551be/embed?autostart=1"></iframe>',
       categoria : 'knife',
-      id: '9', 
+      id: '10', 
     },
     
   ];
