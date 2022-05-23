@@ -21,7 +21,7 @@ const prueba = (item)=>{
           <span className='container-price-detail'>{`$ ${producto.price}`}</span>
         <ItemCount  stock={5} initial={1} />
         </div>
-          <button onClick={()=>prueba(4)}>addtocart</button>
+
         <div className='container-modelo3d'>
           <div className='iframe-3d' dangerouslySetInnerHTML={{__html:producto.modelo}}></div>
         </div>
