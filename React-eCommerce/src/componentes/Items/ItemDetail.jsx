@@ -1,22 +1,23 @@
-import React from 'react'
-// import { useCartContext } from '../Contexto/cartContext';
+
 import { useState } from 'react';
+import { useCartContext } from '../Contexto/cartContext';
 import BtnChange from '../intercambiabilidad/BtnChange';
 import ItemCount from './ItemCount';
 import './itemlist.scss';
 
 
 const ItemDetail = ({producto}) => {
-  // const {addToCart, cartList} = useCartContext()
+  const {addToCart, cartList} = useCartContext();
   const [inputType, setInputType] = useState('itemCount');
+  
 
   function handleInputType() {
     setInputType('BtnChange');
 }
-// const prueba = (item)=>{
-//   console.log (cant)
-//   addToCart ({producto, item})
-//   }
+const onadd =(item) => {
+  addToCart({...producto, item})
+}
+ console.log (cartList);
   return (
                     /*CARD-DETAIL*/    
      
@@ -27,7 +28,7 @@ const ItemDetail = ({producto}) => {
           <span className='container-price-detail'>{`$ ${producto.price}`}</span>  
  
           { inputType ===  'itemCount'?
-        <ItemCount  stock={5} initial={1} onAdd={()=>alert('soy onadd')} handleInputType={handleInputType} />:
+        <ItemCount  stock={5} initial={1} onAdd={onadd} handleInputType={handleInputType} />:
         <BtnChange/>
         }
 

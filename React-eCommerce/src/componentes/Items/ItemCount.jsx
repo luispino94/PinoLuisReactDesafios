@@ -4,7 +4,7 @@ import {useState} from 'react';
 import './itemlist.scss';
 
         /* COMPONENTE CON CONTADOR  */
-const ItemCount = ({ stock, initial, onAdd, handleInputType}) => {
+const ItemCount = ({ producto, stock, initial, onAdd, handleInputType}) => {
 
   const [item, setItem] = useState(initial);
 
