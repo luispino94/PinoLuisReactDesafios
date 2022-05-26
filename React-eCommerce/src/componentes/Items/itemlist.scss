@@ -49,6 +49,7 @@
             width: 100%;            
             align-items: center;
             justify-content: center;
+            display: flex;
 
             .btn-item-add {
                 cursor: pointer;
@@ -106,6 +107,9 @@ grid-template-areas:"imagen-grid descripcion-grid"
                 color: white;
                 text-align: center;
             }
+            .container-button{
+                display: flex;
+            }
 
             .container-categoria {
                 font-size: 1.3em;
@@ -136,6 +140,5 @@ grid-template-areas:"imagen-grid descripcion-grid"
         
                 
 }  
-
 
 
