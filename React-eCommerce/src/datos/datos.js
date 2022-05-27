@@ -4,7 +4,7 @@ const productos = [
       price: 300,
       skin:
         'https://cdnb.artstation.com/p/assets/images/images/004/828/097/large/tolga-balek-1.jpg?1486567236',
-      stock: 5,
+      stock: 10,
       modelo:
       ' <iframe title="AWP | Dragon Lore" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/e633e9b6a24142029843456efef22036/embed?autostart=1"> </iframe>',
       categoria : 'awp',

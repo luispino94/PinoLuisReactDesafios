@@ -14,8 +14,8 @@ const ItemDetail = ({producto}) => {
   function handleInputType() {
     setInputType('BtnChange');
 }
-const onadd =(item) => {
-  addToCart({...producto, item})
+const onadd =(quantity) => {
+  addToCart({...producto, quantity})
 }
  console.log (cartList);
   return (
@@ -28,7 +28,7 @@ const onadd =(item) => {
           <span className='container-price-detail'>{`$ ${producto.price}`}</span>  
  
           { inputType ===  'itemCount'?
-        <ItemCount  stock={5} initial={1} onAdd={onadd} handleInputType={handleInputType} />:
+        <ItemCount  stock={10} initial={1} onAdd={onadd} handleInputType={handleInputType} />:
         <BtnChange/>
         }
 

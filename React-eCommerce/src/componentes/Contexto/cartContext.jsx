@@ -19,20 +19,17 @@ const CartContexProvider = ({children}) => {
  }, [cartList]);
 
  //FUNCION AGREGAR AL CARRITO
- const addToCart = (producto)=>{
-    const inCart = cartList.find(
-      (productInCart) => productInCart === producto.id);
-    if (inCart){
-      setCarlist (
-        cartList.map((productInCart)=>{
-          if (productInCart.id === producto.id){
-            return {...inCart , amount: inCart.amount +1}
-          } else return productInCart;
-        })
-      );
-    } else {
-      setCarlist ([... cartList,{...producto, amount:1}])
-    }
+ function addToCart(item){
+    const inCart = cartList.findIndex(
+      (productInCart) => productInCart.id === item.id);
+    if (inCart !== -1){
+      const cantidadVieja = cartList[inCart].quantity
+      cartList[inCart].quantity += cantidadVieja
+      setCarlist ([...cartList])
+        }else {
+      setCarlist ([... cartList,
+                  item])
+          }
     }
   
   //FUNCIÓN BORRAR ITEM DEL CARRITO
@@ -45,11 +42,13 @@ const CartContexProvider = ({children}) => {
         cartList.filter ((productInCart)=> productInCart.id !== producto.id)
       );
     } else{
-        setCarlist ((productInCart)=>{
+        setCarlist(
+          cartList.map((productInCart)=>{
          if (productInCart.id === producto.id){
            return {...inCart, amount: inCart.amount -1};
          } else return productInCart;
-      });
+      })
+        );
     };
 
 
