@@ -1,4 +1,29 @@
 .lista-resumen-compra {
     width: 100%;
     background-color: white;
+
+    margin-top: 1.25rem;
+
+    .lista-resumen-grid{
+        border-bottom: 2px solid black;
+        display: grid;
+        width: 100%;
+    
+        grid-template-columns:repeat(auto-fill,minmax(250px,fr));
+        grid-auto-rows: repeat(auto-fill,minmax(250px,1fr));
+        gap:5px;
+    }
+    .precio-total{
+        color: black;
+    }
+    .btn-lista-resumen{
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+    }
+    .btn-lista-delete{
+        width: 30px;
+      
+        justify-content: end;
+    }
 }

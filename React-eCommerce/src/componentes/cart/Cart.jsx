@@ -4,27 +4,27 @@ import { useCartContext } from '../Contexto/cartContext'
 import './cart.scss'
 
 const Cart = () => {
-  const {cartList, deleteItemtoCart,vaciarCarrito,addToCart} = useCartContext();
+  const {cartList, deleteItemtoCart,vaciarCarrito,precioTotal} = useCartContext();
 
   
 
   return (
 
     <div className='lista-resumen-compra'>
-      {cartList.map (producto =>  <li key={producto.id}> Nombre: {producto.name} - Precio:{producto.price} -Cantidad: {producto.quantity}</li>)}
-
-      <button onClick={vaciarCarrito}>Vaciar Carrito</button>
+      {cartList.map (producto => <div className='lista-resumen-grid' key={producto.id}> 
+          <li>  Nombre: {producto.name} - Precio:{producto.price} -Cantidad: {producto.cantidad}</li>
+          <button className='btn-lista-delete' onClick={()=> deleteItemtoCart (producto.id)}>x</button>
+          </div>)}
+        <p className='precio-total'>El precio total es: {precioTotal()}</p>
+      <div className='btn-lista-resumen'>
       <Link to='/'>
             <button className='btn' 
              onClick={()=>console.log('Seguir comprando') } >
                 Seguir comprando
             </button>
         </Link>
-      <div>
-        <button onClick={()=> addToCart({item}) }>Agregar</button>
-        <button onClick={()=> deleteItemtoCart({item}) }>Eliminar</button>
-      
-      </div> 
+        <button onClick={vaciarCarrito}>Vaciar Carrito</button>
+      </div>
     </div>
 
   )

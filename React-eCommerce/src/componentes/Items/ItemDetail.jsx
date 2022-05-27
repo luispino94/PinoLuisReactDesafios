@@ -15,7 +15,7 @@ const ItemDetail = ({producto}) => {
     setInputType('BtnChange');
 }
 const onadd =(quantity) => {
-  addToCart({...producto, quantity})
+  addToCart({...producto, cantidad:quantity})
 }
  console.log (cartList);
   return (

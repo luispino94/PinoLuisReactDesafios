@@ -23,8 +23,8 @@ const CartContexProvider = ({children}) => {
     const inCart = cartList.findIndex(
       (productInCart) => productInCart.id === item.id);
     if (inCart !== -1){
-      const cantidadVieja = cartList[inCart].quantity
-      cartList[inCart].quantity += cantidadVieja
+      const cantidadVieja = cartList[inCart].cantidad
+      cartList[inCart].cantidad += cantidadVieja
       setCarlist ([...cartList])
         }else {
       setCarlist ([... cartList,
@@ -33,26 +33,19 @@ const CartContexProvider = ({children}) => {
     }
   
   //FUNCIÓN BORRAR ITEM DEL CARRITO
-    const deleteItemtoCart = (producto) =>{
-      const inCart = cartList.find(
-        (productInCart) => productInCart.id === producto.id);
-   
-    if (inCart.amount ===1){
-      setCarlist (
-        cartList.filter ((productInCart)=> productInCart.id !== producto.id)
-      );
-    } else{
-        setCarlist(
-          cartList.map((productInCart)=>{
-         if (productInCart.id === producto.id){
-           return {...inCart, amount: inCart.amount -1};
-         } else return productInCart;
-      })
-        );
-    };
+    const deleteItemtoCart = (id) =>{
+      setCarlist (cartList.filter(prod=> prod.id !== id))
 
+    }
+    //FUNCION CANTIDAD TOTAL
+    const cantidadTotal = ()=> {
+      return cartList.reduce ((contador,prod)=> contador += prod.cantidad,0)
+    }
 
-}
+    //FUNCION PRECIO TOTAL
+    const precioTotal = ()=>{
+      return cartList.reduce ((contador,prod)=> contador + (prod.cantidad * prod.price),0)
+    }
     //FUNCION VACIAR CARRITO 
     const vaciarCarrito = () =>{
       setCarlist ([])
@@ -63,7 +56,9 @@ const CartContexProvider = ({children}) => {
         cartList,
         addToCart,
         deleteItemtoCart,
-        vaciarCarrito
+        vaciarCarrito,
+        cantidadTotal,
+        precioTotal
     }}>
         {children}
     </CartContext.Provider>
