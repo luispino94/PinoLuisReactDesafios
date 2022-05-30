@@ -32,7 +32,7 @@ const ItemCount = ({stock, initial, onAdd, handleInputType}) => {
         </div>
         <div>
           <button className='btn-item-add' onClick={addCarrito}>Agregar al carrito</button>       
-          {/* <Intercambiabilidad/> */}
+       
         </div> 
         </>
 

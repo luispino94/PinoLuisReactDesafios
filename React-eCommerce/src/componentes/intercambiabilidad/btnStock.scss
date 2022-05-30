@@ -1,0 +1,19 @@
+.container-stock{
+background-color: rgba(255, 255, 255, 0.769);
+width: 100%;
+text-align: center;
+padding: 5px;
+    .titulo-btnStock {
+    padding: 0.3125rem;
+    font-weight: 400;
+    }
+    .subtitulo-stock{
+        color: black;
+        font-weight: bold;
+        font-size: 1.3rem;
+    }
+    .btn-Stock {
+        padding: 10px;
+        margin-top: 10px;
+    }
+}

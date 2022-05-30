@@ -1,21 +1,26 @@
 import React from 'react'
 import { Link} from 'react-router-dom';
 import { useCartContext } from '../Contexto/cartContext'
+import BtnStock from '../intercambiabilidad/btnStock';
 import './cart.scss'
 
 const Cart = () => {
   const {cartList, deleteItemtoCart,vaciarCarrito,precioTotal} = useCartContext();
 
-  
 
   return (
 
+    
     <div className='lista-resumen-compra'>
-      {cartList.map (producto => <div className='lista-resumen-grid' key={producto.id}> 
-          <li className='li-lista-compra'>  Nombre: {producto.name} - Precio:{producto.price} -Cantidad: {producto.cantidad}</li>
+      { cartList.length === 0 ? (<BtnStock/>) 
+      : 
+      <>
+      {cartList.map (producto => 
+      <div className='lista-resumen-grid' key={producto.id}> 
+          <li className='li-lista-compra'> ★ Nombre: {producto.name} ★ Precio:{producto.price} ★ Cantidad: {producto.cantidad}</li>
           <button className='btn-lista-delete' onClick={()=> deleteItemtoCart (producto.id)}>x</button>
           </div>)}
-        <p className='precio-total'>El precio total es: {precioTotal()}</p>
+        <p className='precio-total'>Precio total: {precioTotal()}</p>
       <div className='btn-lista-resumen'>
       <Link to='/'>
             <button className='btn' 
@@ -25,6 +30,8 @@ const Cart = () => {
         </Link>
         <button onClick={vaciarCarrito}>Vaciar Carrito</button>
       </div>
+      </>
+      }
     </div>
 
   )

@@ -4,7 +4,7 @@ import NavBar from './componentes/NavBars/NavBar';
 import ItemListDetail from './componentes/ItemListContainer/ItemListDetail';
 import CartContexProvider from './componentes/Contexto/cartContext';
 import Cart from './componentes/cart/Cart';
-
+import './index.scss'
 
 /* Paginas: 
   cs-go
