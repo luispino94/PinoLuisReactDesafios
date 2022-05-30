@@ -24,14 +24,17 @@ const ItemCount = ({stock, initial, onAdd, handleInputType}) => {
   }
 
   return (
-       <div className='container-button'>
+       <>
+        <div>
           <button className='btn-item' onClick={addItem}><FontAwesomeIcon icon={faPlus}/></button>
             <i className='item-count'>{quantity}</i>
           <button className="btn-item" onClick={lessItem}><FontAwesomeIcon icon={faMinus}/></button>
-        
+        </div>
+        <div>
           <button className='btn-item-add' onClick={addCarrito}>Agregar al carrito</button>       
           {/* <Intercambiabilidad/> */}
-        </div>
+        </div> 
+        </>
 
   );
 }

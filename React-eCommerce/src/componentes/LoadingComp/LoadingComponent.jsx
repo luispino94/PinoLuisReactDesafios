@@ -1,5 +1,7 @@
+import './spiner.scss'
+
 export function LoadingComponent (){
     return <>
-    <h2>Loading...</h2>
+    <div className="spinner"></div>
     </>
 }

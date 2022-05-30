@@ -5,31 +5,30 @@ header {
     width: 100%;
    
 
-    .container-nav {
+.container-nav {
         background-color: rgba(0, 0, 0, 0.886);
         width: 100%;
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
     
-    .container-logo{
-        grid-column: 2/3;
+        .container-logo{
+        grid-column: 2/2;
     }
     .navbar-logo{
-       
-        height: 4rem;
+        height: 5rem;
         display: inline;
-        font-size: 1rem;
-      
-    }
+        
+    } 
     .navbar-vinculo {
         color: white;
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         text-align: center;
-        letter-spacing: 1px;
+        letter-spacing: 3px;
         font-family: var(--font-water);
-        grid-column: 4/6;
+        grid-column: 6/6;
+        
     }
     .navbar-vinculo:hover {
         color: rgba(250, 141, 8, 0.936);
@@ -40,7 +39,7 @@ header {
     .nav-list{
         grid-column:7/-1;
         align-items: center;
-        text-align: right;
+        text-align: end;
         margin-right: 1.25rem;
     .nav-item {
      margin: 0.312rem;
