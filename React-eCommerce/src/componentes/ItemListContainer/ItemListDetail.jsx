@@ -1,7 +1,6 @@
-import React from 'react'
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
-import {getFetch} from '../../datos/datos.js'
 import ItemDetail from '../Items/ItemDetail.jsx';
 import { LoadingComponent } from '../LoadingComp/LoadingComponent.jsx';
 
@@ -13,13 +12,18 @@ const ItemListDetail = () => {
   
   /*Con useEffect + los corchetes hacemos que cargue una sola vez y en segundo plano ( o sea, un array, se ejecuta una sola vez
     )  */ 
-    useEffect(() => { 
-       getFetch (detalleId) 
-       .then (respuesta => setProductos (respuesta))
-       .catch ((err)=> console.log (err))
-      .finally(()=> setLoading(false))
-     }, []); 
- 
+    useEffect(()=>{
+      const db = getFirestore()
+      const dbQuery = doc (db, 'items', detalleId) //con "doc" estoy solicitando un solo documento 
+      getDoc(dbQuery)
+      .then (resp =>setProductos({id: resp.id, ... resp.data()}))
+      .catch (err=>console.log (err))
+      .finally(()=>setLoading(false))
+    },[])
+
+
+
+
     return (
             /* Acá termino importando todo lo que fui armando en mi item >itemList  */
            <>

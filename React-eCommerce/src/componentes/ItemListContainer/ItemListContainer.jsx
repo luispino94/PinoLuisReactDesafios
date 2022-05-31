@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-// import { getFetch } from '../../datos/datos.js'
+
 import ItemList from '../Items/ItemList.jsx';
 import { LoadingComponent } from '../LoadingComp/LoadingComponent.jsx';
 import {getFirestore, getDocs, collection} from 'firebase/firestore'
@@ -12,25 +12,12 @@ const ItemListContainer = () => {
   const {id} = useParams()
 /*Con useEffect + los corchetes hacemos que cargue una sola vez y en segundo plano ( o sea, un array, se ejecuta una sola vez
   )  */ 
-  // useEffect(() => { 
-  //  if (id){ 
-  //    getFetch ()
-  //    .then (respuesta => setProductos (respuesta.filter((prods) => prods.categoria === id)))
-  //    .catch ((err)=> console.log (err))
-  //    .finally(()=>setLoading (false))
-  //   } else {
-  //     getFetch()
-  //     .then (respuesta =>setProductos(respuesta))
-  //     .catch((err)=> console.log (err))
-  //     .finally(()=> setLoading(false))
-  //   }
-  // }, [id])
    
   useEffect(()=>{
     const db = getFirestore()
     if (id){
       const queryCollection = collection(db, 'items')
-      const queryCollectionFilter = query (queryCollection, where('categoria', '==', id))
+      const queryCollectionFilter = query (queryCollection, where('categoria', '===', id))
       getDocs(queryCollectionFilter)
       .then (resp => setProductos(resp.docs.map (items=>({id: items.id, ... items.data()}))))
       .catch((err)=>console.log(err))
