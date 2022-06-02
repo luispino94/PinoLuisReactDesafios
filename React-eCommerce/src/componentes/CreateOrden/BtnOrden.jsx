@@ -2,14 +2,14 @@ import { addDoc, collection, documentId, getFirestore, where, writeBatch, query,
 import { useCartContext } from '../Contexto/cartContext';
 
 
-export default function BtnOrden ({email, password}) {
+export default function BtnOrden () {
  const {cartList, vaciarCarrito, precioTotal} = useCartContext()
 
 //Funcion para crear orden e actualizar stock
 async function createOrden (){
   let orden = {}
   //datos hardcodeados
-  orden.buyer = {email:email, password:password}
+  orden.buyer = {email:'luispino@gmail', nombre:'luis', phone:'111111111'}
   orden.total = precioTotal()
   //acá se están pisando los datos creando un nuevo array
   orden.items = cartList.map (cartItem =>{

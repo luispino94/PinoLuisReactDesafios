@@ -1,5 +1,6 @@
 import { Link} from 'react-router-dom';
 import { useCartContext } from '../Contexto/cartContext'
+import BtnOrden from '../CreateOrden/BtnOrden'
 import './cart.scss'
 
 
@@ -24,6 +25,7 @@ const CartList = () => {
               </button>
           </Link>
           <button onClick={vaciarCarrito}>Vaciar Carrito</button>
+          <BtnOrden/>
         </div>
         </>
         

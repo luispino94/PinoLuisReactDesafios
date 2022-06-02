@@ -16,8 +16,8 @@ const Cart = () => {
       : 
         <CartList/>
       }
-      {cartList.length !== 0 &&
-       <LogIn></LogIn>}
+      {/* {cartList.length !== 0 &&
+       <LogIn></LogIn>} */}
 
        </div>
   )
