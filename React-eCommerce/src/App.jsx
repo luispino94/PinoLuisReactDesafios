@@ -5,6 +5,7 @@ import ItemListDetail from './componentes/ItemListContainer/ItemListDetail';
 import CartContexProvider from './componentes/Contexto/cartContext';
 import Cart from './componentes/cart/Cart';
 import './index.scss'
+import LogIn from './componentes/login/LogIn';
 
 /* Paginas: 
   cs-go
@@ -24,6 +25,7 @@ function App() {
           <Route path='/detalle/:detalleId' element = { <ItemListDetail/>}/>
           <Route path='/cart' element = { <Cart/>}/>
           <Route path='/*' element = {<Navigate to = '/' replace /> } />
+          <Route path = '/login' element = {<LogIn/>}/>
         </Routes>
     </div>
     </CartContexProvider>  

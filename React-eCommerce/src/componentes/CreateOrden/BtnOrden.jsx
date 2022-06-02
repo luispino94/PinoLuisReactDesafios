@@ -3,13 +3,13 @@ import { useCartContext } from '../Contexto/cartContext';
 
 
 export default function BtnOrden () {
- const {cartList, vaciarCarrito, precioTotal} = useCartContext()
+ const {cartList, vaciarCarrito, precioTotal, email,password} = useCartContext()
 
 //Funcion para crear orden e actualizar stock
 async function createOrden (){
   let orden = {}
   //datos hardcodeados
-  orden.buyer = {name:'Luis', email:'luispino@gmail.com', number:'1122592717'}
+  orden.buyer = {email:email, password:password}
   orden.total = precioTotal()
   //acá se están pisando los datos creando un nuevo array
   orden.items = cartList.map (cartItem =>{
