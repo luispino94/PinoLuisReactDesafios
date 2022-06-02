@@ -2,8 +2,8 @@ import { addDoc, collection, documentId, getFirestore, where, writeBatch, query,
 import { useCartContext } from '../Contexto/cartContext';
 
 
-export default function BtnOrden () {
- const {cartList, vaciarCarrito, precioTotal, email,password} = useCartContext()
+export default function BtnOrden ({email, password}) {
+ const {cartList, vaciarCarrito, precioTotal} = useCartContext()
 
 //Funcion para crear orden e actualizar stock
 async function createOrden (){

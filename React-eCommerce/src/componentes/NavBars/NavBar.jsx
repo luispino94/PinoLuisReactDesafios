@@ -1,8 +1,9 @@
-import CartWidget from '../CartWidget/CartWidget'
-import  logo from '../../imagenes/My project.png'
-import './_Estilosnavbar.scss'
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../Contexto/cartContext';
+import CartWidget from '../CartWidget/CartWidget'
+import LoginWidget from '../login/LoginWidget';
+import  logo from '../../imagenes/My project.png'
+import './_Estilosnavbar.scss'
 
 function NavBar (){
     const {cantidadTotal} = useCartContext()
@@ -19,11 +20,10 @@ function NavBar (){
             <Link to='/categoria/terrorist'><li className ="nav-item"><i className="nav-link">Terrorist</i></li></Link>
             <Link to='/categoria/counter'><li className ="nav-item"><i className="nav-link">Counter</i></li></Link>   
             <Link to='/categoria/awp'><li className ="nav-item"><i className="nav-link">Awp</i></li></Link>   
-            <Link to='/categoria/knife'><li className ="nav-item"><i className="nav-link">Knife</i></li></Link>
-            <Link to='/login'><li className ="nav-item"><i className="nav-link">Login</i></li></Link>   
+            <Link to='/categoria/knife'><li className ="nav-item"><i className="nav-link">Knife</i></li></Link>           
+            <li className ="nav-item"><LoginWidget/></li>
             <li className ="nav-item"><CartWidget/></li>
             <i className='icono-cant'>{cantidadTotal() !== 0 && cantidadTotal()}</i>
-            
         </ul>   
     </div>
 </nav>

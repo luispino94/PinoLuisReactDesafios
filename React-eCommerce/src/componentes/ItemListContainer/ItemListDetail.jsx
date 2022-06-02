@@ -28,7 +28,7 @@ const ItemListDetail = () => {
             /* Acá termino importando todo lo que fui armando en mi item >itemList  */
            <>
             {loading ? (<LoadingComponent/>) :
-          <ItemDetail producto={producto}/>}
+            <ItemDetail producto={producto}/>}
           </>
 )}
 

@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import './login.scss'
 
 const LogIn = () => {
+
+    const [isSubmitted, setIsSubmitted] = useState(false);
     const [email, setEmail] = useState(()=>{
         try {
           const emailInSessionStorage = sessionStorage.getItem('emailSession');
@@ -29,9 +31,9 @@ const LogIn = () => {
         sessionStorage.setItem('passwordSession', JSON.stringify(password))
       }, [password]);
 
-        const [isSubmitted, setIsSubmitted] = useState(false);
+      /*Acá hago la función para validar los datos de */
 
-        function validateForm() {
+      function validateForm() {
 
         return email.length > 0 && password.length > 0;
     
@@ -49,13 +51,13 @@ const LogIn = () => {
           <form onSubmit={handleSubmit}>
             <div className="input-container">
               <label>Email </label>
-              <input type="email" value={email} 
+              <input type="email" value={email} placeholder="Por favor ingrese su email" 
               onChange={(e) => setEmail(e.target.value)}/>
             </div>
 
             <div className="input-container">
               <label>Password </label>
-              <input type="password" value={password} 
+              <input type="password" value={password}  placeholder="Por favor ingrese su contraseña"
                 onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <div className="button-container">

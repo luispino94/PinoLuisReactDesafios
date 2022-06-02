@@ -2,6 +2,7 @@ import { useCartContext } from '../Contexto/cartContext'
 import BtnStock from '../intercambiabilidad/btnStock';
 import CartList from './CartList';
 import './cart.scss'
+import LogIn from '../login/LogIn';
 
 const Cart = () => {
   const {cartList} = useCartContext();
@@ -15,8 +16,10 @@ const Cart = () => {
       : 
         <CartList/>
       }
-    </div>
+      {cartList.length !== 0 &&
+       <LogIn></LogIn>}
 
+       </div>
   )
 }
 

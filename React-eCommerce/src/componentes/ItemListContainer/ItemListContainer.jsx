@@ -1,10 +1,11 @@
+import {getFirestore, getDocs, collection, query, where} from 'firebase/firestore'
+
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import ItemList from '../Items/ItemList.jsx';
 import { LoadingComponent } from '../LoadingComp/LoadingComponent.jsx';
-import {getFirestore, getDocs, collection} from 'firebase/firestore'
 
 const ItemListContainer = () => {
   const [productos, setProductos] = useState([])
@@ -17,7 +18,7 @@ const ItemListContainer = () => {
     const db = getFirestore()
     if (id){
       const queryCollection = collection(db, 'items')
-      const queryCollectionFilter = query (queryCollection, where('categoria', '===', id))
+      const queryCollectionFilter = query(queryCollection,where('categoria', '==', id))
       getDocs(queryCollectionFilter)
       .then (resp => setProductos(resp.docs.map (items=>({id: items.id, ... items.data()}))))
       .catch((err)=>console.log(err))
