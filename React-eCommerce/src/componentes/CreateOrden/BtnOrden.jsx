@@ -1,15 +1,20 @@
 import { addDoc, collection, documentId, getFirestore, where, writeBatch, query, getDocs } from 'firebase/firestore';
+import { useState } from 'react';
 import { useCartContext } from '../Contexto/cartContext';
-
+import './btnorden.scss'
 
 export default function BtnOrden () {
  const {cartList, vaciarCarrito, precioTotal} = useCartContext()
+ const [dataForm, setDataForm] = useState({ phone: '', name:'', lastname:'', direction:'' })
+
 
 //Funcion para crear orden e actualizar stock
-async function createOrden (){
+async function createOrden (e){
+  e.preventDefault()
+
   let orden = {}
   //datos hardcodeados
-  orden.buyer = {email:'luispino@gmail', nombre:'luis', phone:'111111111'}
+  orden.buyer = dataForm
   orden.total = precioTotal()
   //acá se están pisando los datos creando un nuevo array
   orden.items = cartList.map (cartItem =>{
@@ -25,7 +30,7 @@ async function createOrden (){
   addDoc (queryOrden, orden)
   .then (resp =>console.log (resp))
   .catch ((err)=>console.log (err))
-  .finally(vaciarCarrito)
+  .finally(()=>vaciarCarrito())
 
 
   //Acá se actualiza el stock de los items
@@ -51,8 +56,56 @@ async function createOrden (){
        con update.data (). stock extraigo el stock del nuevo listado y el cartfind de las cantidades con respecto a ese id 
       y resta el stock original que extrae el firebase y la cantidad que tengo en mi carrito*/  
 
-      return (
-        
-        <button onClick={createOrden}>Realizar orden</button>
+  const handlerChange = (e) => {
+    setDataForm({
+        ...dataForm,
+        [e.target.name]: e.target.value
+    })}
+
+
+return (
+<div className='container-formulario'>
+  <form  className='formulario' onSubmit={createOrden}>
+    <h5 className='titulo-formulario'>Orden de compra: </h5>                
+
+      <input 
+          className='form-control'
+          type='text' 
+          name='name' 
+          placeholder='Ingrese su nombre' 
+          value={dataForm.name}
+          onChange={handlerChange}
+      /><br/>
+
+      <input 
+          className='form-control'
+          type='text' 
+          name='lastname'
+          placeholder='Ingrese su apellido' 
+          value={dataForm.lastname}
+          onChange={handlerChange}
+      /><br/>
+
+      <input 
+          className='form-control'
+          type='number' 
+          name='phone'
+          placeholder='Ingrese su telefono' 
+          value={dataForm.phone}
+          onChange={handlerChange}
+      /><br/>
+
+      <input 
+          className='form-control'
+          type='text' 
+          name='direction'
+          placeholder='Domicilio' 
+          value={dataForm.direction}
+          onChange={handlerChange}
+      /><br/>
+      <button  className="btn-orden" 
+      onClick={createOrden} >Realizar compra</button>
+  </form>
+</div>
       )
 }
