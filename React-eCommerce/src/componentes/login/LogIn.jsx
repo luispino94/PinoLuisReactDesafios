@@ -1,83 +1,49 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
+import {getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword} from 'firebase/auth'
+import { useState } from 'react';
+// const auth = getAuth();
+
+
 import './login.scss'
 
 const LogIn = () => {
+  const [registro, setRegistro]= useState(false)
 
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const [email, setEmail] = useState(()=>{
-        try {
-          const emailInSessionStorage = sessionStorage.getItem('emailSession');
-          return emailInSessionStorage? JSON.parse (emailInSessionStorage) : [];
-        } catch(error){
-          return [];
-        }
-      });
-     
-      useEffect (()=>{
-        sessionStorage.setItem('emailSession', JSON.stringify(email))
-      }, [email]);
-          
-      const [password, setPassword] = useState(()=>{
-        try {
-          const passwordInSessionStorage = sessionStorage.getItem('passwordSession');
-          return passwordInSessionStorage? JSON.parse (passwordInSessionStorage) : [];
-        } catch(error){
-          return [];
-        }
-      });
-     
-      useEffect (()=>{
-        sessionStorage.setItem('passwordSession', JSON.stringify(password))
-      }, [password]);
-
-      /*Acá hago la función para validar los datos de */
-
-      function validateForm() {
-
-        return email.length > 0 && password.length > 0;
+  const handlerSubmit = async (e)=>{
+    e.preventDefault ()
+    const correo = e.target.email.value;
+    const password = e.target.password.value;
     
-      }
-    
-      function handleSubmit(event) {
-    
-        event.preventDefault();
-    
-      }
-
-
-    const renderForm = (
-        <div className="form">
-          <form onSubmit={handleSubmit}>
-            <div className="input-container">
-              <label>Email </label>
-              <input type="email" value={email} placeholder="Por favor ingrese su email" 
-              onChange={(e) => setEmail(e.target.value)}/>
-            </div>
-
-            <div className="input-container">
-              <label>Password </label>
-              <input type="password" value={password}  placeholder="Por favor ingrese su contraseña"
-                onChange={(e) => setPassword(e.target.value)}/>
-            </div>
-            <div className="button-container">
-              <button
-              type="submit" 
-              disabled={!validateForm()}>Login</button>
-            </div>
-          </form>
-        </div>
-      );
-
+    if (registro){
+      await createUserWithEmailAndPassword(auth, correo, password)
+      console.log ("no existe este usuario")
+    }
+    else {
+      await signInWithEmailAndPassword(auth, correo, password )
+      console.log ("usuario ya creado")
+    }
+  } 
 
     return (
-    <div className="container-login">
-      <div className="login-form">
-        <div className="title">Sign In</div>
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
-      </div>
+
+    <div className="form">
+      <h1>Se estan realizando pruebas en Login</h1>
+      <form onSubmit={handlerSubmit}>
+        <div className="input-container">
+          <label>Email </label>
+          <input type="email"  placeholder="Por favor ingrese su email" id='email' required/>
+        </div>
+
+        <div className="input-container">
+          <label>Password </label>
+          <input type="password" placeholder="Por favor ingrese su contraseña" id='password' required/>
+        </div>
+        <div className="button-container">
+          <button
+          type="submit" 
+          onClick={()=>setRegistro(!registro)}>Login</button>
+        </div>
+      </form>
     </div>
-    
     );
 }
 

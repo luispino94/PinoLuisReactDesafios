@@ -6,7 +6,6 @@ export const useCartContext = () => useContext(CartContext)
 
 const CartContexProvider = ({children}) => {
   
-
  const [cartList, setCarlist] = useState(()=>{
    try {
      const productInLocalStorage = localStorage.getItem('cartProducts');
