@@ -1,83 +1,116 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react'
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import {getFirestore, doc, setDoc, getDoc} from 'firebase/firestore';
+
+import getFirestoreApp from '../../firebase/config';
+const auth = getAuth(getFirestoreApp());
+const firestore = getFirestore(getFirestoreApp())
+
 import './login.scss'
+import { useCartContext } from '../Contexto/cartContext';
+import Home from '../Users/Home';
+
+
 
 const LogIn = () => {
 
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const [email, setEmail] = useState(()=>{
-        try {
-          const emailInSessionStorage = sessionStorage.getItem('emailSession');
-          return emailInSessionStorage? JSON.parse (emailInSessionStorage) : [];
-        } catch(error){
-          return [];
-        }
-      });
-     
-      useEffect (()=>{
-        sessionStorage.setItem('emailSession', JSON.stringify(email))
-      }, [email]);
-          
-      const [password, setPassword] = useState(()=>{
-        try {
-          const passwordInSessionStorage = sessionStorage.getItem('passwordSession');
-          return passwordInSessionStorage? JSON.parse (passwordInSessionStorage) : [];
-        } catch(error){
-          return [];
-        }
-      });
-     
-      useEffect (()=>{
-        sessionStorage.setItem('passwordSession', JSON.stringify(password))
-      }, [password]);
+  const [isRegister, setRegister] = useState(false);
+  const {user, setUser} = useCartContext()
 
-      /*Acá hago la función para validar los datos de */
+  async function getRol (uid){
+    const docReference = doc (firestore,`usuario/${uid}`);
+    const docCifrada = await getDoc ( docReference);
+    const infoFinal = docCifrada.data().rol ;
+    return infoFinal
+  }
+  function setUserWithFirebaseAndRol (usuarioFirebase){
+    getRol(usuarioFirebase.uid).then ((rol)=>{
+      const userData = {
+        uid: usuarioFirebase.uid,
+        email: usuarioFirebase.email,
+        rol: rol,
+      };
+      setUser (userData);
+      console.log ('User data Final', userData)
+    });
+  }
 
-      function validateForm() {
+  onAuthStateChanged(auth, (usuarioFirebase) => {
+    if (usuarioFirebase) {
+      //funcion final
 
-        return email.length > 0 && password.length > 0;
-    
+      if (!user) {
+        setUserWithFirebaseAndRol(usuarioFirebase);
       }
-    
-      function handleSubmit(event) {
-    
-        event.preventDefault();
-    
-      }
+    } else {
+      setUser(null);
+    }
 
+  });
+  
+  async function registrarUsuario (email, password, rol){
+  const infoUser = await createUserWithEmailAndPassword(auth, email, password,rol)
+  .then ((userFirebase)=> {
+    return userFirebase
+  });
+   const docuRef = doc(firestore, `usuario/${infoUser.user.uid}`);
+   setDoc(docuRef, {correo:email, rol:rol})
+  }
 
-    const renderForm = (
-        <div className="form">
-          <form onSubmit={handleSubmit}>
-            <div className="input-container">
-              <label>Email </label>
-              <input type="email" value={email} placeholder="Por favor ingrese su email" 
-              onChange={(e) => setEmail(e.target.value)}/>
-            </div>
+  function submitHandler (e) {
+    e.preventDefault ()
+   const email = e.target.elements.email.value;
+   const password = e.target.elements.password.value;
+   const rol = e.target.elements.rol.value;
+   console.log ('submit', email, password, rol);
 
-            <div className="input-container">
-              <label>Password </label>
-              <input type="password" value={password}  placeholder="Por favor ingrese su contraseña"
-                onChange={(e) => setPassword(e.target.value)}/>
-            </div>
-            <div className="button-container">
-              <button
-              type="submit" 
-              disabled={!validateForm()}>Login</button>
-            </div>
-          </form>
-        </div>
-      );
-
-
+   if (isRegister){
+     //registrar
+    registrarUsuario (email, password, rol);
+   } else {
+    //login
+    signInWithEmailAndPassword (auth,email,password)
+   }
+  }
+ 
     return (
-    <div className="container-login">
-      <div className="login-form">
-        <div className="title">Sign In</div>
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+      <>
+      {user ? <Home />
+      : 
+      <div className='container-login'>
+      <h1>{isRegister ? "Regístrate" : "Inicia sesión"}</h1>
+
+      <form onSubmit={submitHandler}>
+        <label>
+          Correo electrónico:
+          <input type="email" id="email" />
+        </label>
+
+        <label>
+          Contraseña:
+          <input type="password" id="password" />
+        </label>
+
+        <label>
+          Rol:
+          <select id="rol">
+            <option value="admin">Administrador</option>
+            <option value="user">Usuario</option>
+          </select>
+        </label>
+
+        <input
+          type="submit"
+          value={isRegister ? "Registrar" : "Iniciar sesión"}
+        />
+      </form>
+
+      <button onClick={() => setRegister(!isRegister)}>
+        {isRegister ? "Ya tengo una cuenta" : "Quiero registrarme"}
+      </button>
       </div>
-    </div>
-    
+    }
+    </>
     );
 }
 
