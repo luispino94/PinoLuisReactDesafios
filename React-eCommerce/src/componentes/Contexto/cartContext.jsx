@@ -5,7 +5,9 @@ export const useCartContext = () => useContext(CartContext)
 
 
 const CartContexProvider = ({children}) => {
-  
+  //usuario LOGIN: 
+  const [user, setUser] = useState(null);
+
  const [cartList, setCarlist] = useState(()=>{
    try {
      const productInLocalStorage = localStorage.getItem('cartProducts');
@@ -54,7 +56,9 @@ const CartContexProvider = ({children}) => {
 
   return (
     <CartContext.Provider value ={{
+        user,
         cartList,
+        setUser,
         addToCart,
         deleteItemtoCart,
         vaciarCarrito,

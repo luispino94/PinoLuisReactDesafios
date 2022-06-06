@@ -1,49 +1,116 @@
-import {getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword} from 'firebase/auth'
-import { useState } from 'react';
-// const auth = getAuth();
+import React, { useState } from 'react'
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import {getFirestore, doc, setDoc, getDoc} from 'firebase/firestore';
 
+import getFirestoreApp from '../../firebase/config';
+const auth = getAuth(getFirestoreApp());
+const firestore = getFirestore(getFirestoreApp())
 
 import './login.scss'
+import { useCartContext } from '../Contexto/cartContext';
+import Home from '../Users/Home';
+
+//agregando prueba
 
 const LogIn = () => {
-  const [registro, setRegistro]= useState(false)
 
-  const handlerSubmit = async (e)=>{
+  const [isRegister, setRegister] = useState(false);
+  const {user, setUser} = useCartContext()
+
+  async function getRol (uid){
+    const docReference = doc (firestore,`usuario/${uid}`);
+    const docCifrada = await getDoc ( docReference);
+    const infoFinal = docCifrada.data().rol ;
+    return infoFinal
+  }
+  function setUserWithFirebaseAndRol (usuarioFirebase){
+    getRol(usuarioFirebase.uid).then ((rol)=>{
+      const userData = {
+        uid: usuarioFirebase.uid,
+        email: usuarioFirebase.email,
+        rol: rol,
+      };
+      setUser (userData);
+      console.log ('User data Final', userData)
+    });
+  }
+
+  onAuthStateChanged(auth, (usuarioFirebase) => {
+    if (usuarioFirebase) {
+      //funcion final
+
+      if (!user) {
+        setUserWithFirebaseAndRol(usuarioFirebase);
+      }
+    } else {
+      setUser(null);
+    }
+
+  });
+  
+  async function registrarUsuario (email, password, rol){
+  const infoUser = await createUserWithEmailAndPassword(auth, email, password,rol)
+  .then ((userFirebase)=> {
+    return userFirebase
+  });
+   const docuRef = doc(firestore, `usuario/${infoUser.user.uid}`);
+   setDoc(docuRef, {correo:email, rol:rol})
+  }
+
+  function submitHandler (e) {
     e.preventDefault ()
-    const correo = e.target.email.value;
-    const password = e.target.password.value;
-    
-    if (registro){
-      await createUserWithEmailAndPassword(auth, correo, password)
-      console.log ("no existe este usuario")
-    }
-    else {
-      await signInWithEmailAndPassword(auth, correo, password )
-      console.log ("usuario ya creado")
-    }
-  } 
+   const email = e.target.elements.email.value;
+   const password = e.target.elements.password.value;
+   const rol = e.target.elements.rol.value;
+   console.log ('submit', email, password, rol);
 
+   if (isRegister){
+     //registrar
+    registrarUsuario (email, password, rol);
+   } else {
+    //login
+    signInWithEmailAndPassword (auth,email,password)
+   }
+  }
+ 
     return (
+      <>
+      {user ? <Home />
+      : 
+      <div className='container-login'>
+      <h1>{isRegister ? "Regístrate" : "Inicia sesión"}</h1>
 
-    <div className="form">
-      <h1>Se estan realizando pruebas en Login</h1>
-      <form onSubmit={handlerSubmit}>
-        <div className="input-container">
-          <label>Email </label>
-          <input type="email"  placeholder="Por favor ingrese su email" id='email' required/>
-        </div>
+      <form onSubmit={submitHandler}>
+        <label>
+          Correo electrónico:
+          <input type="email" id="email" />
+        </label>
 
-        <div className="input-container">
-          <label>Password </label>
-          <input type="password" placeholder="Por favor ingrese su contraseña" id='password' required/>
-        </div>
-        <div className="button-container">
-          <button
-          type="submit" 
-          onClick={()=>setRegistro(!registro)}>Login</button>
-        </div>
+        <label>
+          Contraseña:
+          <input type="password" id="password" />
+        </label>
+
+        <label>
+          Rol:
+          <select id="rol">
+            <option value="admin">Administrador</option>
+            <option value="user">Usuario</option>
+          </select>
+        </label>
+
+        <input
+          type="submit"
+          value={isRegister ? "Registrar" : "Iniciar sesión"}
+        />
       </form>
-    </div>
+
+      <button onClick={() => setRegister(!isRegister)}>
+        {isRegister ? "Ya tengo una cuenta" : "Quiero registrarme"}
+      </button>
+      </div>
+    }
+    </>
     );
 }
 

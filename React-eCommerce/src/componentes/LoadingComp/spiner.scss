@@ -1,12 +1,16 @@
 .spinner {
-    border:  4px solid rgba(0,0,0, .1);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border-left-color: rgb(255, 85, 0);
+
+    width: 200px;
+    height: 200px;
     margin: 0 auto;
     animation: spin 1s ease infinite;
+    align-items: center;
     
+    .img-spinner {
+        width: 100%;
+        height:100%;
+        margin: 0 auto;
+    }
 }
 
 @keyframes spin {
