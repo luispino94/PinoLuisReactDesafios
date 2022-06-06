@@ -1,20 +1,23 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faUser} from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-// import BtnLogOut from '../intercambiabilidad/BtnLogOut';
-// import { useCartContext } from '../Contexto/cartContext';
-
-
-
-
+import { useCartContext } from '../Contexto/cartContext';
+import {faUserXmark} from '@fortawesome/free-solid-svg-icons';
 
 function LoginWidget() {
+  const {user} = useCartContext();
 
   return (
     <>
+   { user ? <Link to = '/login'>
+    <span><FontAwesomeIcon icon={faUserXmark} 
+    className='icono-logo'/>
+    </span></Link>
+     :
     <Link to='/login'>
-    <FontAwesomeIcon icon = {faUser} className='icono-logo' />
-    </Link> 
+    <FontAwesomeIcon icon = {faUser} 
+    className='icono-logo'/>
+    </Link>  }
     </>
   )
 }

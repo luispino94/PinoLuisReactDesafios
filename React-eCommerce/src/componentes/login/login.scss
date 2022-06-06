@@ -1,5 +1,4 @@
 
-
 .container-login {
   width: 70%;
   padding: 5px;
@@ -8,8 +7,22 @@
   background-color: white;
   display: flex;
   flex-direction: column;
+  text-align: center;
+
+
+  .form-login-container {
+    width: 100%;
+    margin: 5px;
+    align-items: center;
+    justify-content: center;
   
-
-
+  .form-login {
+    text-align: start;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0px 10px 0px;
+    
+  }}
+  
 }
 

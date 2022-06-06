@@ -10,7 +10,6 @@ import './login.scss'
 import { useCartContext } from '../Contexto/cartContext';
 import Home from '../Users/Home';
 
-//agregando prueba
 
 const LogIn = () => {
 
@@ -78,27 +77,32 @@ const LogIn = () => {
       {user ? <Home />
       : 
       <div className='container-login'>
-      <h1>{isRegister ? "Regístrate" : "Inicia sesión"}</h1>
+      <h1 className='titulo-login'>{isRegister ? "Regístrate" : "Inicia sesión"}</h1>
 
-      <form onSubmit={submitHandler}>
+      <form className='form-login-container' onSubmit={submitHandler}>
+        <div className='form-login'>
         <label>
           Correo electrónico:
           <input type="email" id="email" />
         </label>
+        </div>
 
-        <label>
+        <div>
+        <label className='form-login'>
           Contraseña:
           <input type="password" id="password" />
         </label>
+        </div>
+        <div>
 
-        <label>
+        <label className='form-login'>
           Rol:
           <select id="rol">
             <option value="admin">Administrador</option>
             <option value="user">Usuario</option>
           </select>
         </label>
-
+        </div>
         <input
           type="submit"
           value={isRegister ? "Registrar" : "Iniciar sesión"}

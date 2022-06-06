@@ -6,6 +6,7 @@ import ItemListDetail from './componentes/ItemListContainer/ItemListDetail';
 import CartContexProvider from './componentes/Contexto/cartContext';
 import Cart from './componentes/cart/Cart';
 import LogIn from './componentes/login/LogIn';
+import Home from './componentes/Users/Home';
 
 import './index.scss'
 
@@ -23,6 +24,7 @@ function App() {
           <Route path='/detalle/:detalleId' element = { <ItemListDetail/>}/>
           <Route path='/cart' element = { <Cart/>}/>
           <Route path = '/login' element = {<LogIn/>}/>
+          <Route path = '/home' element = {<Home/>}/>
           <Route path='/*' element = {<Navigate to = '/' replace /> } />
         </Routes>
     </div>

@@ -4,10 +4,9 @@ import CartWidget from '../CartWidget/CartWidget'
 import LoginWidget from '../login/LoginWidget';
 import  logo from '../../imagenes/My project.png'
 import './_Estilosnavbar.scss'
-import BtnLogOut from '../intercambiabilidad/BtnLogOut';
 
 function NavBar (){
-    const {cantidadTotal, user} = useCartContext()
+    const {cantidadTotal} = useCartContext()
  return (
 <header>
 <nav className="navbar-nav">
@@ -22,7 +21,7 @@ function NavBar (){
             <Link to='/categoria/counter'><li className ="nav-item"><i className="nav-link">Counter</i></li></Link>   
             <Link to='/categoria/awp'><li className ="nav-item"><i className="nav-link">Awp</i></li></Link>   
             <Link to='/categoria/knife'><li className ="nav-item"><i className="nav-link">Knife</i></li></Link>           
-            <li className ="nav-item">{user ? (<LoginWidget/>):(<BtnLogOut/>)}</li>
+            <li className ="nav-item"><LoginWidget/></li>
             <li className ="nav-item"><CartWidget/></li>
             <i className='icono-cant'>{cantidadTotal() !== 0 && cantidadTotal()}</i>
         </ul>   
