@@ -1,18 +1,28 @@
-
 .container-login {
   width: 70%;
-  padding: 5px;
+  max-width: 32.5rem;
+  padding: 0.625rem;
+  border: 2px solid orange;
   margin: 0 auto;
   margin-top: 3rem;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.765);
   display: flex;
   flex-direction: column;
   text-align: center;
+  box-shadow: 0 50px 70px -50px rgba(246, 245, 245, 0.8);
 
+
+  .titulo-login {
+    font-size: 2rem;
+    padding: 0.3125rem;
+  }
 
   .form-login-container {
+    
     width: 100%;
-    margin: 5px;
+    max-width: 32.5rem;
+    margin: 0 auto;
+    padding: 10px;
     align-items: center;
     justify-content: center;
   
@@ -21,8 +31,65 @@
     align-items: center;
     justify-content: center;
     margin: 10px 0px 10px 0px;
-    
+    text-align: center;
+    font-size: 1.2rem;
   }}
-  
+  .label-form {
+    padding-bottom: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .input-submit-form{
+    border-radius: 0.625rem;
+    width: 6.25rem;
+    margin-top: 0.3125rem;
+    background-color: orange;
+    color: white;
+    text-align: center;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  input {
+    width: 100%;
+    text-align: center;
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    padding: 6px;
+    margin-top: 10px;
+    letter-spacing: 1px;
+  }
+
+  select {
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 3px;
+    width: 150px;
+    outline: none;
+    text-align: center;
+  }
+
+  .spanLogin-Register {
+    font-size: 1rem;
+    padding: 0.625rem;
+    width: 12.5rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 0.3125rem;
+    margin-bottom: 0.3125rem;
+    cursor: pointer;
+    font-weight: 600;
+
+  }
 }
+
+
 

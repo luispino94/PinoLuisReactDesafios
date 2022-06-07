@@ -16,6 +16,7 @@ const LogIn = () => {
   const [isRegister, setRegister] = useState(false);
   const {user, setUser} = useCartContext()
 
+    //FUNCIÓN ASYNCRONICA QUE BUSCA Y TRAE EL ROL Y USUARIO.
   async function getRol (uid){
     const docReference = doc (firestore,`usuario/${uid}`);
     const docCifrada = await getDoc ( docReference);
@@ -33,10 +34,10 @@ const LogIn = () => {
       console.log ('User data Final', userData)
     });
   }
-
+  //Función de firebase para observar si el usuario está o no.
   onAuthStateChanged(auth, (usuarioFirebase) => {
     if (usuarioFirebase) {
-      //funcion final
+      
 
       if (!user) {
         setUserWithFirebaseAndRol(usuarioFirebase);
@@ -47,11 +48,11 @@ const LogIn = () => {
 
   });
   
-  async function registrarUsuario (email, password, rol){
+  async function registerUser (email, password, rol){
   const infoUser = await createUserWithEmailAndPassword(auth, email, password,rol)
   .then ((userFirebase)=> {
     return userFirebase
-  });
+  })
    const docuRef = doc(firestore, `usuario/${infoUser.user.uid}`);
    setDoc(docuRef, {correo:email, rol:rol})
   }
@@ -61,11 +62,9 @@ const LogIn = () => {
    const email = e.target.elements.email.value;
    const password = e.target.elements.password.value;
    const rol = e.target.elements.rol.value;
-   console.log ('submit', email, password, rol);
-
    if (isRegister){
      //registrar
-    registrarUsuario (email, password, rol);
+    registerUser (email, password, rol);
    } else {
     //login
     signInWithEmailAndPassword (auth,email,password)
@@ -77,25 +76,25 @@ const LogIn = () => {
       {user ? <Home />
       : 
       <div className='container-login'>
-      <h1 className='titulo-login'>{isRegister ? "Regístrate" : "Inicia sesión"}</h1>
+      <h1 className='titulo-login'>{isRegister ? "Regístrate" : "Iniciar sesión"}</h1>
 
       <form className='form-login-container' onSubmit={submitHandler}>
         <div className='form-login'>
-        <label>
+        <label className='label-Form'>
           Correo electrónico:
-          <input type="email" id="email" />
+        <input type="email" id="email" placeholder='Por favor complete el campo'/>
         </label>
         </div>
 
-        <div>
-        <label className='form-login'>
+        <div className='form-login'>
+        <label className='label-Form'>
           Contraseña:
-          <input type="password" id="password" />
+          <input type="password" id="password" placeholder='Por favor complete el campo' />
         </label>
         </div>
-        <div>
 
-        <label className='form-login'>
+        <div className='form-login'>
+        <label className='label-form'>
           Rol:
           <select id="rol">
             <option value="admin">Administrador</option>
@@ -103,15 +102,15 @@ const LogIn = () => {
           </select>
         </label>
         </div>
-        <input
+        
+        <input className='input-submit-form'
           type="submit"
-          value={isRegister ? "Registrar" : "Iniciar sesión"}
+          value={isRegister ? "Registrar" : "Ingresar"}
         />
       </form>
-
-      <button onClick={() => setRegister(!isRegister)}>
+      <span className='spanLogin-Register' onClick={() => setRegister(!isRegister)}>
         {isRegister ? "Ya tengo una cuenta" : "Quiero registrarme"}
-      </button>
+      </span >
       </div>
     }
     </>
