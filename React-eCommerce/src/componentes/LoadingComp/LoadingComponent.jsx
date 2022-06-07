@@ -1,5 +1,6 @@
-import './spiner.scss'
-import spiner from '../../imagenes/Negro Rojo Videojuegos Ilustración Logo para videojuegos (Logo animado) (Logo).png' 
+import spiner from '../../imagenes/spinner.png';
+
+import './spiner.scss';
 
 export function LoadingComponent (){
     return <>

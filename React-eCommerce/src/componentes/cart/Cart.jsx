@@ -1,9 +1,9 @@
-import { useCartContext } from '../Contexto/cartContext'
+import { useCartContext } from '../Contexto/cartContext';
 import BtnStock from '../intercambiabilidad/btnStock';
 import CartList from './CartList';
 import BtnOrden from '../CreateOrden/BtnOrden';
-import LogIn from '../login/LogIn';
-import './cart.scss'
+
+import './cart.scss';
 
 const Cart = () => {
   const {cartList, user} = useCartContext();
@@ -12,7 +12,7 @@ const Cart = () => {
   return (
 
     
-    <div className='lista-resumen-compra'>
+    <div className='list-cart-container'>
       { cartList.length === 0 ? (<BtnStock/>) 
       : 
         <CartList/>

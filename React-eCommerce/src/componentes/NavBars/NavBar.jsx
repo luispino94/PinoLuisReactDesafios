@@ -1,8 +1,11 @@
-import { Link } from 'react-router-dom';
 import { useCartContext } from '../Contexto/cartContext';
+
+import { Link } from 'react-router-dom';
+
 import CartWidget from '../CartWidget/CartWidget'
 import LoginWidget from '../login/LoginWidget';
 import  logo from '../../imagenes/My project.png'
+
 import './_Estilosnavbar.scss'
 
 function NavBar (){

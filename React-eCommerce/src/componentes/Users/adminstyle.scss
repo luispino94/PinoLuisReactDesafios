@@ -1,0 +1,61 @@
+.container-admin {
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 3rem;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 2px solid rgb(181, 148, 57);
+    background-color: rgba(52, 52, 52, 0.615);
+    box-shadow: 0 50px 70px -50px rgba(246, 245, 245, 0.8);
+
+    .container-admin-img{
+    
+        width: 250px;
+        height: 250px;
+        margin: 0 auto ;
+
+        align-items: center;
+        justify-content: center;
+
+      
+        .img-adminView{
+
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    
+        }}
+    .titulo-User{
+        padding: 5px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 1rem;
+        margin: 10px;
+        font-weight: 400;
+    }
+    .subtitulo-user{
+        padding: 5px;
+        margin: 3px;
+        text-align: center;
+        font-size: 1rem;
+    }
+    .container-btn-user {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        padding: 5px;
+    }
+    .btn-admin{
+        padding: 10px;
+        background-color: rgb(193, 162, 27);
+        border: 1px solid white;
+        letter-spacing: 1px;
+    }
+    
+}   

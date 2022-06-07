@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
+import { useCartContext } from '../Contexto/cartContext';
+
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import {getFirestore, doc, setDoc, getDoc} from 'firebase/firestore';
-
 import getFirestoreApp from '../../firebase/config';
-const auth = getAuth(getFirestoreApp());
-const firestore = getFirestore(getFirestoreApp())
 
-import './login.scss'
-import { useCartContext } from '../Contexto/cartContext';
 import Home from '../Users/Home';
 
+import './login.scss'
+
+const auth = getAuth(getFirestoreApp());
+const firestore = getFirestore(getFirestoreApp());
 
 const LogIn = () => {
 
@@ -31,15 +32,14 @@ const LogIn = () => {
         rol: rol,
       };
       setUser (userData);
-      console.log ('User data Final', userData)
     });
   }
   //Función de firebase para observar si el usuario está o no.
   onAuthStateChanged(auth, (usuarioFirebase) => {
     if (usuarioFirebase) {
-      
-
+    
       if (!user) {
+        //Login
         setUserWithFirebaseAndRol(usuarioFirebase);
       }
     } else {

@@ -1,11 +1,8 @@
 import React from 'react'
-import { useCartContext } from '../Contexto/cartContext'
 import AdminView from './AdminView';
 import UserView from './UserView';
-import getFirestoreApp from '../../firebase/config';
-import {getAuth, signOut} from 'firebase/auth';
+import { useCartContext } from '../Contexto/cartContext'
 
-const auth = getAuth(getFirestoreApp());
 
 const Home = () => {
   const {user} = useCartContext();
@@ -14,8 +11,6 @@ const Home = () => {
           {user.rol === "admin" ? <AdminView /> 
           :           
           <UserView />}
-          
-          <button onClick={() => signOut(auth)}> Cerrar sesión</button>
     </div>
   )
 }

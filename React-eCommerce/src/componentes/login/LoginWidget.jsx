@@ -1,7 +1,8 @@
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faUser} from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../Contexto/cartContext';
+
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faUser} from '@fortawesome/free-solid-svg-icons';
 import {faUserXmark} from '@fortawesome/free-solid-svg-icons';
 
 function LoginWidget() {
@@ -11,12 +12,12 @@ function LoginWidget() {
     <>
    { user ? <Link to = '/login'>
     <span><FontAwesomeIcon icon={faUserXmark} 
-    className='icono-logo'/>
+    className='icon-logo'/>
     </span></Link>
      :
     <Link to='/login'>
     <FontAwesomeIcon icon = {faUser} 
-    className='icono-logo'/>
+    className='icon-logo'/>
     </Link>  }
     </>
   )

@@ -26,8 +26,8 @@ const CartContexProvider = ({children}) => {
     const inCart = cartList.findIndex(
       (productInCart) => productInCart.id === item.id);
     if (inCart !== -1){
-      const cantidadVieja = cartList[inCart].cantidad
-      cartList[inCart].cantidad = cantidadVieja + item.cantidad
+      const oldCant = cartList[inCart].cantidad
+      cartList[inCart].cantidad = oldCant + item.cantidad
       setCarlist ([...cartList])
         }else {
       setCarlist ([... cartList,

@@ -1,11 +1,9 @@
-header {
-    width: 100%;
-}
-.navbar-nav {
-    width: 100%;
+
+    .navbar-nav {
+        width: 100%;
    
 
-.container-nav {
+    .container-nav {
         background-color: rgba(0, 0, 0, 0.886);
         width: 100%;
         display: grid;
@@ -41,33 +39,38 @@ header {
         align-items: center;
         text-align: end;
         margin-right: 1.25rem;
-    .nav-item {
-     margin: 0.312rem;
-     display: inline;
-     padding: 0.18rem;
+
+        .nav-item {
+        margin: 0.312rem;
+        display: inline;
+        padding: 0.18rem;
     }
+
     .icono-cant{
         color: rgb(246, 79, 7);
         padding: 5px;
         
     }
+
     .nav-link {
         color: white;
         padding: 0.312rem;
         font-size: 1em;
         transition: all .5 ease;
     }
+
     .nav-link:hover{
         color: rgba(250, 141, 8, 0.936);
         
     }
 
-    .icono-logo {
+    .icon-logo {
         color: white;
         font-size: 1.3em;
                 
     }
-    .icono-logo:hover {
+
+    .icon-logo:hover {
         color: rgb(0, 176, 23);
     }
     }

@@ -1,7 +1,7 @@
 import { Link} from 'react-router-dom';
 import { useCartContext } from '../Contexto/cartContext'
 
-import './cart.scss'
+import './cartList.scss';
 
 
 const CartList = () => {
@@ -12,12 +12,12 @@ const CartList = () => {
       
         <>
         {cartList.map (producto => 
-        <div className='lista-resumen-grid' key={producto.id}> 
-            <li className='li-lista-compra'> ★ Nombre: {producto.name} ★ Precio:{producto.price} ★ Cantidad: {producto.cantidad}</li>
-            <button className='btn-lista-delete' onClick={()=> deleteItemtoCart (producto.id)}>x</button>
+        <div className='list-container-grid' key={producto.id}> 
+            <li className='li-list-buy'> ★ Nombre: {producto.name} ★ Precio:{producto.price} ★ Cantidad: {producto.cantidad}</li>
+            <button className='btn-list-delete' onClick={()=> deleteItemtoCart (producto.id)}>x</button>
             </div>)}
-          <p className='precio-total'>Precio total: {precioTotal()}</p>
-        <div className='btn-lista-resumen'>
+          <p className='total-price'>Precio total: {precioTotal()}</p>
+        <div className='btnCartlist-grid'>
         <Link to='/'>
               <button className='btn' 
                onClick={()=>console.log('Seguir comprando') } >
