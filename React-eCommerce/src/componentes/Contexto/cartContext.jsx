@@ -1,5 +1,12 @@
 import {createContext, useContext, useState, useEffect } from 'react'; 
 
+import {onAuthStateChanged, getAuth} from 'firebase/auth';
+import {doc, getDoc, getFirestore} from 'firebase/firestore'
+import getFirestoreApp from '../../firebase/config';
+
+const auth = getAuth(getFirestoreApp());
+const firestore = getFirestore(getFirestoreApp());
+
 const CartContext = createContext([])
 export const useCartContext = () => useContext(CartContext) 
 
@@ -7,6 +14,39 @@ export const useCartContext = () => useContext(CartContext)
 const CartContexProvider = ({children}) => {
   //usuario LOGIN: 
   const [user, setUser] = useState(null);
+
+    //FUNCIÓN ASYNCRONICA QUE BUSCA Y TRAE EL ROL Y USUARIO.
+    async function getRol (uid){
+      const docReference = doc (firestore,`usuario/${uid}`);
+      const docCifrada = await getDoc ( docReference);
+      const infoFinal = docCifrada.data().rol ;
+      return infoFinal
+    }
+    function setUserWithFirebaseAndRol (usuarioFirebase){
+      getRol(usuarioFirebase.uid).then ((rol)=>{
+        const userData = {
+          uid: usuarioFirebase.uid,
+          email: usuarioFirebase.email,
+          rol: rol,
+        };
+        setUser (userData);
+      });
+    }
+    //Función de firebase para observar si el usuario está o no.
+    onAuthStateChanged(auth, (usuarioFirebase) => {
+      if (usuarioFirebase) {
+      
+        if (!user) {
+          //Login
+          setUserWithFirebaseAndRol(usuarioFirebase);
+        }
+      } else {
+        setUser(null);
+      }
+  
+    });
+
+
 
  const [cartList, setCarlist] = useState(()=>{
    try {

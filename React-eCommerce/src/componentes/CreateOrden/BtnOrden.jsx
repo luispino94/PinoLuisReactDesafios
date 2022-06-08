@@ -64,6 +64,7 @@ async function createOrden (e){
 
 
 return (
+  
 <div className='container-formulario'>
   <form  className='formulario' onSubmit={createOrden}>
     <h5 className='titulo-formulario'>Orden de compra: </h5>                

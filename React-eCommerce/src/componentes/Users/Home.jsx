@@ -7,11 +7,11 @@ import { useCartContext } from '../Contexto/cartContext'
 const Home = () => {
   const {user} = useCartContext();
     return (
-    <div>
+    <>
           {user.rol === "admin" ? <AdminView /> 
           :           
           <UserView />}
-    </div>
+    </>
   )
 }
 

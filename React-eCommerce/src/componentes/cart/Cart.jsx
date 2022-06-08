@@ -2,6 +2,7 @@ import { useCartContext } from '../Contexto/cartContext';
 import BtnStock from '../intercambiabilidad/btnStock';
 import CartList from './CartList';
 import BtnOrden from '../CreateOrden/BtnOrden';
+import BtnInfo from '../intercambiabilidad/BtnInfo';
 
 import './cart.scss';
 
@@ -19,16 +20,10 @@ const Cart = () => {
         
       }
 
-      { user ? `Hola ${user.email} Para finalizar la compra primero completa los campos y luego click en Realizar compra`
-      : 
-      <h1>Por favor, primero registrate</h1>}
-
-      {cartList.length !==0 &&  <BtnOrden/> 
+      {cartList.length !==0 && user === 'user' ? <BtnOrden/>
+      : (<BtnInfo/>)
       }
-
-
- 
-       </div>
+    </div>
   )
 }
 

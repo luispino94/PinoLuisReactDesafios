@@ -16,11 +16,9 @@ const AdminView = () => {
   const {user} = useCartContext();
   return (
     <div className='container-admin'>
-      <div className='container-admin-img'>
         <img className='img-adminView' src ={logoadmin} alt ='#'/> 
-      </div>
-        <div className='titulo-User'>
-        <h2>{`Hola Admin : ${user.email} tu rol es de ${user.rol}`}</h2> 
+       <div className='titulo-User'>
+        <h2 className='title-msg-admin'>{`Hola Admin : ${user.email} tu rol es de ${user.rol}`}</h2> 
         <p className='subtitulo-user'><b>Tu registro se realizó con éxito!</b></p>
         <p className='subtitulo-user'>Haz click en comenzar para ver todo lo que podés hacer como Admin !</p>
         </div>
