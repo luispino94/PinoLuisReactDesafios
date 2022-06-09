@@ -4,7 +4,7 @@ import { useCartContext } from '../Contexto/cartContext';
 import './btnorden.scss'
 
 export default function BtnOrden () {
- const {cartList, vaciarCarrito, precioTotal} = useCartContext()
+ const {cartList, vaciarCarrito, precioTotal, user} = useCartContext()
  const [dataForm, setDataForm] = useState({ phone: '', name:'', lastname:'', direction:'' })
 
 
@@ -67,8 +67,8 @@ return (
   
 <div className='container-formulario'>
   <form  className='formulario' onSubmit={createOrden}>
+    <h2 className='formulario-user-title'>{`Hola ${user.email}, completá el siguiente formulario para finalizar tu compra!`}</h2>
     <h5 className='titulo-formulario'>Orden de compra: </h5>                
-
       <input 
           className='form-control'
           type='text' 

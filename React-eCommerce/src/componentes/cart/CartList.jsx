@@ -12,7 +12,7 @@ const CartList = () => {
         <div>
         {cartList.map (producto => 
         <div className='list-container-grid' key={producto.id}> 
-            <li className='li-list-buy'> ★ Nombre: {producto.name} ★ Precio:{producto.price} ★ Cantidad: {producto.cantidad}</li>
+            <li className='li-list-buy'>< img className='img-cartlist' src ={producto.skin} /> ★ Nombre: {producto.name} ★ Precio:{producto.price} ★ Cantidad: {producto.cantidad}</li>
             <button className='btn-list-delete' onClick={()=> deleteItemtoCart (producto.id)}>x</button>
             </div>)}
         <div className='container-total-btn-list'>    

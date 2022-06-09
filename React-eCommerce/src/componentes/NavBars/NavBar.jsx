@@ -25,8 +25,8 @@ function NavBar (){
             <Link to='/categoria/awp'><li className ="nav-item"><i className="nav-link">Awp</i></li></Link>   
             <Link to='/categoria/knife'><li className ="nav-item"><i className="nav-link">Knife</i></li></Link>           
             <li className ="nav-item"><LoginWidget/></li>
-            <li className ="nav-item"><CartWidget/></li>
-            <i className='icono-cant'>{cantidadTotal() !== 0 && cantidadTotal()}</i>
+            <li className ="nav-item"><CartWidget/><i className='icon-cant'>{cantidadTotal() !== 0 && cantidadTotal()}</i></li>
+            
         </ul>   
     </div>
 </nav>

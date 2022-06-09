@@ -1,10 +1,19 @@
 .container-formulario{
     margin-top: 10px;
     border-top: 2px solid black;
-.formulario{
+    background-color: rgba(240, 248, 255, 0.807);
+    border: 2px solid black; 
+
+    .formulario{
     text-align: center;
     margin-top:5px;
 
+    .formulario-user-title{
+        font-size: 1rem;
+        font-weight: bold;
+        padding: 5px;
+        margin: 5px 5px 10px 5px;
+    }
     .titulo-formulario{
         font-size: 1.2rem;
         font-weight: 700;

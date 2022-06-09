@@ -20,7 +20,7 @@ const Cart = () => {
         
       }
 
-      {cartList.length !==0 && user === 'user' ? <BtnOrden/>
+      {(cartList.length !==0 && user.rol === 'user') ? <BtnOrden/>
       : (<BtnInfo/>)
       }
     </div>

@@ -15,10 +15,10 @@ const UserView = () => {
   const {user} = useCartContext();
   return (
     <div className='container-user'>
+        <div className='container-card-user'>
         <img className='img-userView' src ={logouser} alt ='#'/>
-
         <div className='titulo-User'>
-        <h2>{`Hola ${user.email}`}</h2> 
+        <h2 className='title-msg-user'>{`Hola ${user.email}`}</h2> 
         <p className='subtitulo-user'><b>Tu registro se realizó con éxito!</b></p>
         <p className='subtitulo-user'>Ya podés navegar por nuestro carrito y realizar las compras que quieras</p>
         </div>
@@ -29,6 +29,7 @@ const UserView = () => {
             </button>
         </Link>
       <button className='btn-user' onClick={() => signOut(auth)}> Cerrar sesión</button>
+      </div>
       </div>  
     </div>
   )

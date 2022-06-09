@@ -3,6 +3,9 @@ background-color: rgba(255, 255, 255, 0.769);
 width: 100%;
 text-align: center;
 padding: 5px;
+border: 2px solid black;
+display: flex;
+flex-direction: column;
     .titulo-btnStock {
     padding: 0.3125rem;
     font-weight: 400;

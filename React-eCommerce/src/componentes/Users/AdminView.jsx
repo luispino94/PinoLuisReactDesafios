@@ -16,6 +16,7 @@ const AdminView = () => {
   const {user} = useCartContext();
   return (
     <div className='container-admin'>
+      <div className='container-card-admin'>
         <img className='img-adminView' src ={logoadmin} alt ='#'/> 
        <div className='titulo-User'>
         <h2 className='title-msg-admin'>{`Hola Admin : ${user.email} tu rol es de ${user.rol}`}</h2> 
@@ -29,7 +30,8 @@ const AdminView = () => {
             </button>
         </Link>
       <button className='btn-admin' onClick={() => signOut(auth)}> Cerrar sesión</button>
-      </div>  
+      </div> 
+      </div> 
     </div>
   )
 }

@@ -1,23 +1,24 @@
 .container-admin {
-    border-radius: 10px;
-    margin: 0 auto;
-    margin-top: 3rem;
-    width: 50%;
     display: grid;
     grid-template-columns: minmax(250px, 1fr);
     grid-auto-rows: auto;
-    text-align: center;
-    border: 2px solid rgb(181, 148, 57);
-    background-color: rgba(52, 52, 52, 0.615);
-    box-shadow: 0 50px 70px -50px rgba(246, 245, 245, 0.8);
+    width: 100%;
       
+    .container-card-admin{
+        border-radius: 10px;
+        margin: 0 auto;
+        margin-top: 3rem;
+        width: 80%;
+        text-align: center;
+        border: 2px solid rgb(181, 148, 57);
+        background-color: rgba(52, 52, 52, 0.615);
+        box-shadow: 0 50px 70px -50px rgba(236, 199, 78, 0.8);
+
         .img-adminView{
         height: auto;
         width: 15.625rem;
-        margin: 0 auto;
         align-items: center;
         justify-content: center;
-        text-align: center;
         }
 
     .titulo-User{
@@ -52,5 +53,5 @@
         border: 1px solid white;
         letter-spacing: 1px;
     }
-    
+    }
 }   
