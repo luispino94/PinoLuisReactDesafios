@@ -1,4 +1,5 @@
 import { useCartContext } from '../Contexto/cartContext';
+
 import BtnStock from '../intercambiabilidad/btnStock';
 import CartList from './CartList';
 import BtnOrden from '../CreateOrden/BtnOrden';
@@ -20,7 +21,7 @@ const Cart = () => {
         
       }
 
-      {(cartList.length !==0 && user.rol === 'user') ? <BtnOrden/>
+      {(cartList.length !==0 && user) ? <BtnOrden/>
       : (<BtnInfo/>)
       }
     </div>

@@ -9,6 +9,7 @@ import LogIn from './componentes/login/LogIn';
 import Home from './componentes/Users/Home';
 
 import './index.scss'
+import UsersInfo from './componentes/UsersInfo/UsersInfo';
 
 
 
@@ -25,6 +26,7 @@ function App() {
           <Route path='/cart' element = { <Cart/>}/>
           <Route path = '/login' element = {<LogIn/>}/>
           <Route path = '/home' element = {<Home/>}/>
+          <Route path = '/userInfo' element = {<UsersInfo/>}/>
           <Route path='/*' element = {<Navigate to = '/' replace /> } />
         </Routes>
     </div>

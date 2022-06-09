@@ -47,7 +47,7 @@ const CartContexProvider = ({children}) => {
         setUser(null);
       }
     });
-    },[]) 
+    },[user]) 
 
 
  const [cartList, setCarlist] = useState(()=>{
