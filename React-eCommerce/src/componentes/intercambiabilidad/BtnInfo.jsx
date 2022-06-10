@@ -13,7 +13,6 @@ const BtnInfo = () => {
         <Link to = '../login'>
         <button className='btn-info-login'>Registrar</button>
         </Link>
-
     </div>
   )
 }

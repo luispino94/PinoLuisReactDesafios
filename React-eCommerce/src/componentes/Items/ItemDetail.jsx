@@ -6,7 +6,7 @@ import './itemlist.scss';
 
 
 const ItemDetail = ({producto}) => {
-  const {addToCart, cartList} = useCartContext();
+  const {addToCart} = useCartContext();
   const [inputType, setInputType] = useState('itemCount');
   
 
@@ -16,7 +16,7 @@ const ItemDetail = ({producto}) => {
 const onadd =(quantity) => {
   addToCart({...producto, cantidad:quantity})
 }
- console.log (cartList);
+
   return (
                     /*CARD-DETAIL*/    
      

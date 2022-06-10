@@ -21,9 +21,14 @@ const Cart = () => {
         
       }
 
-      {(cartList.length !==0 && user) ? <BtnOrden/>
-      : (<BtnInfo/>)
+      { (cartList.length !==0 && user) ? <BtnOrden/>
+          :
+          (user && cartList.length== 0) ? 'HOLA USUARIO, TU CARRÍTO ESTÁ VACÍO' 
+          :
+          <BtnInfo/>
       }
+
+
     </div>
   )
 }

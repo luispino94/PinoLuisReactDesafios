@@ -32,11 +32,8 @@ const CartContexProvider = ({children}) => {
         setUser (userData);
       });
     }
-    /*Función de firebase para observar si el usuario está o no
-    + el useEffect para no tener problemas con el re-render del usuario
-    al relogear cualquier página*/
-    
-    useEffect(()=>{
+    /*Función de firebase para observar si el usuario está o no*/
+  
     onAuthStateChanged(auth, (usuarioFirebase) => {
       if (usuarioFirebase) {
         if (!user) {
@@ -47,7 +44,7 @@ const CartContexProvider = ({children}) => {
         setUser(null);
       }
     });
-    },[user]) 
+
 
 
  const [cartList, setCarlist] = useState(()=>{
