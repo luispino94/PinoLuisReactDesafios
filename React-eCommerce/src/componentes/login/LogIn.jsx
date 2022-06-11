@@ -5,6 +5,7 @@ import {getFirestore, doc, setDoc} from 'firebase/firestore';
 import getFirestoreApp from '../../firebase/config';
 
 import Home from '../Users/Home';
+import logoView from '../../imagenes/fondologin.png';
 
 import './login.scss'
 import { useCartContext } from '../Contexto/cartContext';
@@ -21,9 +22,9 @@ const LogIn = () => {
   const infoUser = await createUserWithEmailAndPassword(auth, email, password,rol)
   .then ((userFirebase)=> {
     return userFirebase
-  })
-   const docuRef = doc(firestore, `usuario/${infoUser.user.uid}`);
-   setDoc(docuRef, {correo:email, rol:rol})
+    })
+    const docuRef = doc(firestore, `usuario/${infoUser.user.uid}`);
+    setDoc(docuRef, {correo:email, rol:rol})
   }
 
   function submitHandler (e) {
@@ -45,8 +46,10 @@ const LogIn = () => {
       {user ? <Home />
       : 
       <div className='container-login'>
+      <div className='container-img-login'>
+      <img className='img-loginView' src ={logoView} alt ='#'/>
+      </div>  
       <h1 className='titulo-login'>{isRegister ? "Regístrate" : "Iniciar sesión"}</h1>
-
       <form className='form-login-container' onSubmit={submitHandler}>
         <div className='form-login'>
         <label className='label-Form'>

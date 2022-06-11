@@ -4,12 +4,29 @@
   border: 2px solid black;
   margin: 0 auto;
   margin-top: 3rem;
-  background-color: rgba(255, 255, 255, 0.765);
+  margin-bottom: 3rem;
+  background-color: rgba(214, 214, 214, 0.928);
   display: flex;
   flex-direction: column;
   text-align: center;
+  border-radius: 10px;
   box-shadow: 0 50px 70px -50px rgba(246, 245, 245, 0.8);
+  .container-img-login{
+      border-radius: 50%;
+      border: 3px solid rgb(118, 118, 118);
+      align-items: center;
+      width:  30%;
+      height: 30%;
+      margin: 0 auto;
+      justify-content: center;
+    .img-loginView {
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 110%;
+         
 
+    }}
 
   .titulo-login {
     font-size: 2rem;
@@ -46,7 +63,7 @@
     background-color: rgba(250, 141, 8, 0.936);
     color: white;
     text-align: center;
-    border: 1px solid black;
+    border: 1px solid white;
     padding: 10px;
     font-size: 1rem;
     cursor: pointer;

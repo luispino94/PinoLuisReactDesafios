@@ -7,6 +7,7 @@ import BtnInfo from '../intercambiabilidad/BtnInfo';
 
 import './cart.scss';
 
+
 const Cart = () => {
   const {cartList, user} = useCartContext();
 
@@ -15,7 +16,7 @@ const Cart = () => {
 
     
     <div className='list-cart-container'>
-      { cartList.length === 0 ? (<BtnStock/>) 
+      { (cartList.length === 0) ? (<BtnStock/>) 
       : 
         <CartList/>
         
@@ -23,7 +24,7 @@ const Cart = () => {
 
       { (cartList.length !==0 && user) ? <BtnOrden/>
           :
-          (user && cartList.length== 0) ? 'HOLA USUARIO, TU CARRÍTO ESTÁ VACÍO' 
+          (user && cartList.length== 0) ? `Hola, no tenés productos en tu carrito. Volve a home para ver nuestros artículos!`
           :
           <BtnInfo/>
       }
