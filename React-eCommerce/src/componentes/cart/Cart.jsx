@@ -24,7 +24,7 @@ const Cart = () => {
 
       { (cartList.length !==0 && user) ? <BtnOrden/>
           :
-          (user && cartList.length== 0) ? `Hola, no tenés productos en tu carrito. Volve a home para ver nuestros artículos!`
+          (user && cartList.length== 0) ? ``
           :
           <BtnInfo/>
       }

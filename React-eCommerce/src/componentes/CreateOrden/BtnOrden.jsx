@@ -1,11 +1,47 @@
 import { addDoc, collection, documentId, getFirestore, where, writeBatch, query, getDocs } from 'firebase/firestore';
-import { useState } from 'react';
 import { useCartContext } from '../Contexto/cartContext';
+
 import './btnorden.scss'
+import { useForm } from './useForm';
+
+
+
+const validationsForm = (form) =>{
+  let inputErrors = {};
+  let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+  if (!form.name.trim()){
+    inputErrors.name = "El campo 'Nombre' es requerido"
+  }else if (!regexName.test(form.name.trim())){
+    inputErrors.name = "El campo 'Nombre' sólo acepta letras"
+  }
+
+  if (!form.lastname.trim()){
+    inputErrors.lastname = "El campo 'Apellido' es requerido"
+  }else if (!regexName.test(form.lastname.trim())){
+    inputErrors.lastname = "El campo 'Apellido' sólo acepta letras"
+  }
+
+  if (!form.phone.trim()){
+    inputErrors.phone = "El campo 'Télefono' es requerido"
+  }
+  if (!form.direction.trim()){
+    inputErrors.direction = "El campo 'Domicilio' es requerido"
+  }
+  return inputErrors
+};
 
 export default function BtnOrden () {
- const {cartList, vaciarCarrito, precioTotal, user} = useCartContext()
- const [dataForm, setDataForm] = useState({ phone: '', name:'', lastname:'', direction:'' })
+ const {cartList, vaciarCarrito, precioTotal, user} = useCartContext();
+ const {
+  form,
+  inputErrors,
+  loading,
+  response,
+  handleChange,
+  handleBlur,
+  handleSubmit
+ } = useForm(validationsForm);
+//  const [dataForm, setDataForm] = useState({ phone: '', name:'', lastname:'', direction:'' });
 
 
 //Funcion para crear orden e actualizar stock
@@ -14,7 +50,7 @@ async function createOrden (e){
 
   let orden = {}
   //datos hardcodeados
-  orden.buyer = dataForm
+  orden.buyer = form;
   orden.total = precioTotal()
   //acá se están pisando los datos creando un nuevo array
   orden.items = cartList.map (cartItem =>{
@@ -48,7 +84,7 @@ async function createOrden (e){
     .then (resp=> resp.docs.forEach(resp => batch.update(resp.ref,{  
       stock: resp.data().stock - cartList.find (item => item.id === resp.id).cantidad 
     })))
-    .finally(()=>console.log('stock actualizado'))
+    .finally(()=>console.log ('stock actualizado'))
 
     batch.commit()
   }
@@ -56,17 +92,10 @@ async function createOrden (e){
        con update.data (). stock extraigo el stock del nuevo listado y el cartfind de las cantidades con respecto a ese id 
       y resta el stock original que extrae el firebase y la cantidad que tengo en mi carrito*/  
 
-  const handlerChange = (e) => {
-    setDataForm({
-        ...dataForm,
-        [e.target.name]: e.target.value
-    })}
-
-
 return (
   
 <div className='container-formulario'>
-  <form  className='formulario' onSubmit={createOrden}>
+  <form  className='formulario' onSubmit={handleSubmit}>
     <h2 className='formulario-user-title'>{`Hola ${user.email}, completá el siguiente formulario para finalizar tu compra!`}</h2>
     <h5 className='titulo-formulario'>Orden de compra: </h5>                
       <input 
@@ -74,39 +103,57 @@ return (
           type='text' 
           name='name' 
           placeholder='Ingrese su nombre' 
-          value={dataForm.name}
-          onChange={handlerChange}
-      /><br/>
+          value={form.name}
+          onChange={handleChange}
+          onBlur = {handleBlur}
+          required
+      />
+      {inputErrors.name && <p className='inputError'>{inputErrors.name}</p>}
+      <br/>
 
       <input 
           className='form-control'
           type='text' 
           name='lastname'
           placeholder='Ingrese su apellido' 
-          value={dataForm.lastname}
-          onChange={handlerChange}
-      /><br/>
+          value={form.lastname}
+          onChange={handleChange}
+          onBlur = {handleBlur}
+          required
+      />
+      {inputErrors.lastname && <p className='inputError'>{inputErrors.lastname}</p>}
+      <br/>
 
       <input 
           className='form-control'
           type='number' 
           name='phone'
           placeholder='Ingrese su telefono' 
-          value={dataForm.phone}
-          onChange={handlerChange}
-      /><br/>
+          value={form.phone}
+          onChange={handleChange}
+          onBlur = {handleBlur}
+          required
+      />
+      {inputErrors.phone && <p className='inputError'>{inputErrors.phone}</p>}
+      <br/>
 
       <input 
           className='form-control'
           type='text' 
           name='direction'
           placeholder='Domicilio' 
-          value={dataForm.direction}
-          onChange={handlerChange}
-      /><br/>
+          value={form.direction}
+          onChange={handleChange}
+          onBlur = {handleBlur}
+          required
+      />
+      {inputErrors.direction && <p className='inputError'>{inputErrors.direction}</p>}
+      <br/>
+      
       <button  className="btn-orden" 
       onClick={createOrden} >Realizar compra</button>
   </form>
+
 </div>
       )
 }

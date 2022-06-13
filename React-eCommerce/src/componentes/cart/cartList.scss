@@ -3,37 +3,36 @@
     display: flex;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.893);
-    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-    grid-auto-rows: repeat(auto-fill,minmax(250px,1fr));
+    grid-template-columns:repeat(auto-fill,minmax(250px,3fr));
+    grid-auto-rows: auto;
     gap:5px;
-    justify-content: space-evenly;
     align-items: center;
-
+    justify-content:space-evenly;
 .li-list-buy{
     color: black;
-    text-align: start;
-    margin-left: 4px;
+    text-align: center;
+    margin-left: 0.25rem;
     font-weight: 600;
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
+    
+
   .img-cartlist{
-        width: 100px;
-        height: 60px; 
-        margin:3px;
+        width: auto;
+        height: 3.75rem; 
+        margin:0.1875rem;
         border: 1px solid rgb(0, 0, 0);
-           
+        
     }
 }
 
 .btn-list-delete{
     width: 1.87rem;
     text-align: center;
-    justify-content: right;
-
-
+    align-items: center;
+    justify-content: start;
 }
 
 
