@@ -2,7 +2,7 @@ import { useCartContext } from '../Contexto/cartContext';
 
 import BtnStock from '../intercambiabilidad/btnStock';
 import CartList from './CartList';
-import BtnOrden from '../CreateOrden/BtnOrden';
+import Form from '../CreateOrden/Form';
 import BtnInfo from '../intercambiabilidad/BtnInfo';
 
 import './cart.scss';
@@ -22,7 +22,7 @@ const Cart = () => {
         
       }
 
-      { (cartList.length !==0 && user) ? <BtnOrden/>
+      { (cartList.length !==0 && user) ? <Form/>
           :
           (user && cartList.length== 0) ? ``
           :

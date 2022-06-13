@@ -1,55 +1,22 @@
 import { addDoc, collection, documentId, getFirestore, where, writeBatch, query, getDocs } from 'firebase/firestore';
 import { useCartContext } from '../Contexto/cartContext';
-
-import './btnorden.scss'
 import { useForm } from './useForm';
+import { useState } from 'react';
+import { LoadingComponent } from '../LoadingComp/LoadingComponent';
 
-
-
-const validationsForm = (form) =>{
-  let inputErrors = {};
-  let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-  if (!form.name.trim()){
-    inputErrors.name = "El campo 'Nombre' es requerido"
-  }else if (!regexName.test(form.name.trim())){
-    inputErrors.name = "El campo 'Nombre' sólo acepta letras"
-  }
-
-  if (!form.lastname.trim()){
-    inputErrors.lastname = "El campo 'Apellido' es requerido"
-  }else if (!regexName.test(form.lastname.trim())){
-    inputErrors.lastname = "El campo 'Apellido' sólo acepta letras"
-  }
-
-  if (!form.phone.trim()){
-    inputErrors.phone = "El campo 'Télefono' es requerido"
-  }
-  if (!form.direction.trim()){
-    inputErrors.direction = "El campo 'Domicilio' es requerido"
-  }
-  return inputErrors
-};
+import './btnorden.scss';
 
 export default function BtnOrden () {
- const {cartList, vaciarCarrito, precioTotal, user} = useCartContext();
- const {
-  form,
-  inputErrors,
-  loading,
-  response,
-  handleChange,
-  handleBlur,
-  handleSubmit
- } = useForm(validationsForm);
-//  const [dataForm, setDataForm] = useState({ phone: '', name:'', lastname:'', direction:'' });
-
+ const {cartList, vaciarCarrito, precioTotal} = useCartContext();
+ const {form}= useForm();
+ const [loading, setLoading] = useState(false);
 
 //Funcion para crear orden e actualizar stock
 async function createOrden (e){
   e.preventDefault()
 
   let orden = {}
-  //datos hardcodeados
+
   orden.buyer = form;
   orden.total = precioTotal()
   //acá se están pisando los datos creando un nuevo array
@@ -84,76 +51,22 @@ async function createOrden (e){
     .then (resp=> resp.docs.forEach(resp => batch.update(resp.ref,{  
       stock: resp.data().stock - cartList.find (item => item.id === resp.id).cantidad 
     })))
-    .finally(()=>console.log ('stock actualizado'))
+    .finally(()=>setLoading (true))
 
     batch.commit()
   }
     /*getDocs tiene un array de los que cumplen la condición del where ,lo recorro con el forEach y utilizo el batch.update para actualizar 
        con update.data (). stock extraigo el stock del nuevo listado y el cartfind de las cantidades con respecto a ese id 
       y resta el stock original que extrae el firebase y la cantidad que tengo en mi carrito*/  
-
+console.log (createOrden );
+console.log (form);
 return (
-  
-<div className='container-formulario'>
-  <form  className='formulario' onSubmit={handleSubmit}>
-    <h2 className='formulario-user-title'>{`Hola ${user.email}, completá el siguiente formulario para finalizar tu compra!`}</h2>
-    <h5 className='titulo-formulario'>Orden de compra: </h5>                
-      <input 
-          className='form-control'
-          type='text' 
-          name='name' 
-          placeholder='Ingrese su nombre' 
-          value={form.name}
-          onChange={handleChange}
-          onBlur = {handleBlur}
-          required
-      />
-      {inputErrors.name && <p className='inputError'>{inputErrors.name}</p>}
-      <br/>
-
-      <input 
-          className='form-control'
-          type='text' 
-          name='lastname'
-          placeholder='Ingrese su apellido' 
-          value={form.lastname}
-          onChange={handleChange}
-          onBlur = {handleBlur}
-          required
-      />
-      {inputErrors.lastname && <p className='inputError'>{inputErrors.lastname}</p>}
-      <br/>
-
-      <input 
-          className='form-control'
-          type='number' 
-          name='phone'
-          placeholder='Ingrese su telefono' 
-          value={form.phone}
-          onChange={handleChange}
-          onBlur = {handleBlur}
-          required
-      />
-      {inputErrors.phone && <p className='inputError'>{inputErrors.phone}</p>}
-      <br/>
-
-      <input 
-          className='form-control'
-          type='text' 
-          name='direction'
-          placeholder='Domicilio' 
-          value={form.direction}
-          onChange={handleChange}
-          onBlur = {handleBlur}
-          required
-      />
-      {inputErrors.direction && <p className='inputError'>{inputErrors.direction}</p>}
-      <br/>
-      
-      <button  className="btn-orden" 
-      onClick={createOrden} >Realizar compra</button>
-  </form>
-
-</div>
+ 
+      <>
+      <button  className="btn-orden"
+      onClick={createOrden} >Realizar compra
+      </button>
+      {loading && <LoadingComponent/>}
+      </>
       )
 }
