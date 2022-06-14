@@ -7,7 +7,7 @@ const auth = getAuth(getFirestoreApp());
 
 const userGetInfo = auth.currentUser;
 
-const UsersInfo = () => {
+const UsersData = () => {
     // const {user} = useCartContext();
 
     // if (userGetInfo !== null) {
@@ -24,8 +24,8 @@ const UsersInfo = () => {
     //  console.log (userRol); 
     //  console.log (userUid); 
   return (
-    <div>UsersInfo</div>
+    <div>UsersData</div>
   )
 }
 
-export default UsersInfo
+export default UsersData

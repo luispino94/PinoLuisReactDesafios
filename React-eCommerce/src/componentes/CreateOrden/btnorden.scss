@@ -3,10 +3,11 @@
     border-top: 2px solid black;
     background-color: rgba(240, 248, 255, 0.807);
     border: 2px solid black; 
-    padding-bottom: 2rem;
+
     .formulario{
     text-align: center;
-    margin-top:5px;
+    margin-top:0.3125rem;
+    padding-bottom: 0.625rem;
 
     .formulario-user-title{
         font-size: 1rem;
@@ -26,7 +27,7 @@
     .inputError {
         color: red;
         font-size: 0.8rem;
-        font-weight: bold
+        font-weight: bold;
     }
 }
 }

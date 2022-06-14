@@ -7,9 +7,9 @@ import CartContexProvider from './componentes/Contexto/cartContext';
 import Cart from './componentes/cart/Cart';
 import LogIn from './componentes/login/LogIn';
 import Home from './componentes/Users/Home';
+import UsersData from './componentes/UsersData/UsersData';
 
 import './index.scss'
-import UsersInfo from './componentes/UsersInfo/UsersInfo';
 
 
 
@@ -26,7 +26,7 @@ function App() {
           <Route path='/cart' element = { <Cart/>}/>
           <Route path = '/login' element = {<LogIn/>}/>
           <Route path = '/home' element = {<Home/>}/>
-          <Route path = '/userInfo' element = {<UsersInfo/>}/>
+          <Route path = '/usersdata' element = {<UsersData/>}/>
           <Route path='/*' element = {<Navigate to = '/' replace /> } />
         </Routes>
     </div>

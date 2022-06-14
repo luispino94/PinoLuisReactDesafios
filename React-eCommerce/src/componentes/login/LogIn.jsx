@@ -16,13 +16,26 @@ const firestore = getFirestore(getFirestoreApp());
 const LogIn = () => {
 
   const [isRegister, setRegister] = useState(false);
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const {user} = useCartContext();
   
   async function registerUser (email, password, rol){
   const infoUser = await createUserWithEmailAndPassword(auth, email, password,rol)
   .then ((userFirebase)=> {
     return userFirebase
-    })
+  })  
+  .catch (err=>{
+    switch(err.code){
+    case 'auth/email-already-in-use':
+    case 'auth/invalid-email':
+      setEmailError(err.message);
+    break;
+    case 'auth/weak-password':
+      setPasswordError(err.message);
+    break;
+    }
+  })
     const docuRef = doc(firestore, `usuario/${infoUser.user.uid}`);
     setDoc(docuRef, {correo:email, rol:rol})
   }
@@ -56,6 +69,7 @@ const LogIn = () => {
           Correo electrónico:
         <input type="email" id="email" placeholder='Por favor complete el campo'/>
         </label>
+        <p className='errorMsg'>{emailError}</p>
         </div>
 
         <div className='form-login'>
@@ -63,6 +77,7 @@ const LogIn = () => {
           Contraseña:
           <input type="password" id="password" placeholder='Por favor complete el campo' />
         </label>
+        <p className='errorMsg'>{passwordError}</p>
         </div>
 
         <div className='form-login'>

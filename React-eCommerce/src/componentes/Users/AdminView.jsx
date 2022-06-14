@@ -24,7 +24,7 @@ const AdminView = () => {
         <p className='subtitulo-user'>Haz click en comenzar para ver todo lo que podés hacer como Admin !</p>
         </div>
       <div className="container-btn-user">
-      <Link to='/userInfo'>
+      <Link to='/usersdata'>
             <button className='btn-admin'>
               Click
             </button>

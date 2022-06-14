@@ -33,7 +33,7 @@ const CartContexProvider = ({children}) => {
       });
     }
     /*Función de firebase para observar si el usuario está o no*/
-  
+    useEffect(()=>{
     onAuthStateChanged(auth, (usuarioFirebase) => {
       if (usuarioFirebase) {
         if (!user) {
@@ -43,7 +43,8 @@ const CartContexProvider = ({children}) => {
       } else {
         setUser(null);
       }
-    });
+    })
+  }, [])
 
  const [cartList, setCarlist] = useState(()=>{
    try {

@@ -3,8 +3,6 @@ import { useState } from "react"
 export const useForm = () =>{
     const [form, setForm] = useState({phone: '', name:'', lastname:'', direction:''});
     const [inputErrors, setInputErrors] = useState({});
-    const [loading, setLoading] = useState(false);
-    const [response, setResponse] = useState(null);
 
     function validateForm(form){
       let inputErrors = {};
@@ -47,13 +45,12 @@ export const useForm = () =>{
     const handleSubmit = (e) => {
       e.preventDefault ();
       setInputErrors (validateForm (form));
+      
     };
 
     return {
         form,
         inputErrors,
-        loading,
-        response,
         handleChange,
         handleBlur,
         handleSubmit
