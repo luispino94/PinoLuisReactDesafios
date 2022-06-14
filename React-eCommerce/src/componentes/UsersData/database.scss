@@ -1,0 +1,29 @@
+.container-DataBase{
+    width: 90%;
+    background-color: aliceblue;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-auto-rows: repeat(12,1fr);
+    gap: 5px;
+    margin-top: 1rem;
+
+    .database-title {
+        grid-column: 1/-1;
+        text-align: center;
+        padding: 5px;
+        margin-bottom: 3px;
+    }
+    .container-list-db {
+        grid-area: 1/3;
+        grid-row: 2/6;
+
+        text-align: start;    
+
+    }
+    .container-order-db{
+        grid-area: 5/10;
+        grid-row: 2/6;
+        width: 100%;
+    }
+}
