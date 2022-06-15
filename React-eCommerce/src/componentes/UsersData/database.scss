@@ -1,25 +1,29 @@
 .container-DataBase{
     width: 90%;
-    background-color: aliceblue;
+    background-color: rgba(240, 248, 255, 0.842);
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(12,1fr);
     grid-auto-rows: repeat(12,1fr);
     gap: 5px;
     margin-top: 1rem;
+    padding-bottom: 0.625rem;
 
     .database-title {
         grid-column: 1/-1;
         text-align: center;
         padding: 5px;
+        font-size: 1.5rem;
+        align-items: center;
+        justify-content: center;
         margin-bottom: 3px;
     }
     .container-list-db {
         grid-area: 1/3;
         grid-row: 2/6;
-
-        text-align: start;    
-
+        text-align: start; 
+   
+        padding: 10px;
     }
     .container-order-db{
         grid-area: 5/10;

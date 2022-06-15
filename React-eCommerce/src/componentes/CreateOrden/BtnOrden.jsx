@@ -3,13 +3,14 @@ import { useCartContext } from '../Contexto/cartContext';
 import { useForm } from './useForm';
 import { useState } from 'react';
 import { LoadingComponent } from '../LoadingComp/LoadingComponent';
-
+import swal from 'sweetalert';
 import './btnorden.scss';
 
 export default function BtnOrden () {
  const {cartList, vaciarCarrito, precioTotal, user} = useCartContext();
  const {form,inputErrors,handleChange,handleBlur,handleSubmit} = useForm();
  const [loading, setLoading] = useState(false);
+ const [numberId ,setNumberId] = useState({});
 
 //Funcion para crear orden e actualizar stock
 async function createOrden (e){
@@ -31,10 +32,16 @@ async function createOrden (e){
   const db = getFirestore()
   const queryOrden = collection(db,'orders')
   addDoc (queryOrden, orden)
-  .then (resp =>console.log (resp))
+  .then (resp => setNumberId(resp.id))
   .catch ((err)=>console.log (err))
-  .finally(()=>vaciarCarrito())
-
+  .finally(()=>
+     swal({
+    title: "Compra realizada!",
+    text: `numero de orden: ${numberId}`,
+    icon: "success",
+    }),
+  vaciarCarrito()
+  )
 
   //Acá se actualiza el stock de los items
     const dbStock = getFirestore()
@@ -124,6 +131,7 @@ return (
       }
     </form>
       {loading && <LoadingComponent/>}
+
 </div>
       )
       

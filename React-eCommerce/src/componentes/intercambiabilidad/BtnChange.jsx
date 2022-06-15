@@ -4,14 +4,12 @@ export default function BtnChange  (){
 return(
     <>
         <Link to = '/cart'>
-            <button className='btn' 
-             onClick={()=>console.log('terminar compra') }  >
+            <button className='btn'>
                 Terminar Compra
             </button>
         </Link>
         <Link to='/'>
-            <button className='btn' 
-             onClick={()=>console.log('Seguir comprando') } >
+            <button className='btn'>
                 Seguir comprando
             </button>
         </Link>
