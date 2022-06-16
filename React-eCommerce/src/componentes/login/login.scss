@@ -48,6 +48,12 @@
     margin: 10px 0px 10px 0px;
     text-align: center;
     font-size: 1.2rem;
+
+    .errorMsg {
+      color: red;
+      font-size: 0.8rem;
+      padding: 10px;
+    }
   }}
   .label-form {
     padding-bottom: 5px;

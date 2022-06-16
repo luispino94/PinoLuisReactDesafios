@@ -23,25 +23,8 @@ const LogIn = () => {
   async function registerUser (email, password, rol){
   const infoUser = await createUserWithEmailAndPassword(auth, email, password,rol)
   .then ((userFirebase)=> {return userFirebase})  
-  .catch ((err)=>  {
-    if(err.code == 'auth/email-already-in-use'){
-      setEmailError('Email ya registrado') 
-    } else if (err.code == 'auth/invalid-email'){
-      setEmailError('Email invalido')
-    }
-    if (err.code == 'auth/weak-password'){
-      setPasswordError('La contraseña debe tener más de 6 caracteres')
-    } 
-    // case 'auth/email-already-in-use':
-    // case 'auth/invalid-email':
-    //   setEmailError(err.message);
-    // break;
-    // case 'auth/weak-password':
-    //   setPasswordError(err.message);
-    // break;
-  })
-    const docuRef = doc(firestore, `usuario/${infoUser.user.uid}`);
-    setDoc(docuRef, {correo:email, rol:rol})
+  const docuRef = doc(firestore, `usuario/${infoUser.user.uid}`);
+  setDoc(docuRef, {correo:email, rol:rol})
   }
 
   function submitHandler (e) {
@@ -51,7 +34,7 @@ const LogIn = () => {
    const rol = e.target.elements.rol.value;
    if (isRegister){
      //registrar
-    registerUser (email, password, rol);
+    registerUser (email, password, rol);      
    } else {
     //login
     signInWithEmailAndPassword (auth,email,password)
