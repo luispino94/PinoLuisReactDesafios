@@ -16,13 +16,25 @@ const firestore = getFirestore(getFirestoreApp());
 const LogIn = () => {
 
   const [isRegister, setRegister] = useState(false);
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const [emailError, setEmailError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
   const {user} = useCartContext();
   
   async function registerUser (email, password, rol){
   const infoUser = await createUserWithEmailAndPassword(auth, email, password,rol)
-  .then ((userFirebase)=> {return userFirebase})  
+  .then ((userFirebase)=> {return userFirebase})
+  .catch (function(err){
+ 
+    if(err.code == 'auth/email-already-in-use'){
+      setEmailError ('Email ya está en uso')
+     }
+     else if (err.code == 'auth/invalid-email'){
+       setEmailError('Formato de email incorrecto')  
+     }
+     if (err.code == 'auth/weak-password'){
+        setPasswordError('La contraseña debe tener al menos 6 carácteres')
+     }
+   })
   const docuRef = doc(firestore, `usuario/${infoUser.user.uid}`);
   setDoc(docuRef, {correo:email, rol:rol})
   }
@@ -54,7 +66,8 @@ const LogIn = () => {
         <div className='form-login'>
         <label className='label-Form'>
           Correo electrónico:
-        <input type="email" id="email" placeholder='Por favor complete el campo'/>
+        <input type="email" id="email" placeholder='Por favor complete el campo'
+        required/>
         </label>
         <p className='errorMsg'>{emailError}</p>
         </div>
@@ -62,9 +75,11 @@ const LogIn = () => {
         <div className='form-login'>
         <label className='label-Form'>
           Contraseña:
-          <input type="password" id="password" placeholder='Por favor complete el campo' />
-        </label>
+          <input type="password" id="password" placeholder='Por favor complete el campo' 
+          required/>
         <p className='errorMsg'>{passwordError}</p>
+        </label>
+       
         </div>
 
         <div className='form-login'>

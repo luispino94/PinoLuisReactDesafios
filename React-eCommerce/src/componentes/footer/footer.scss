@@ -1,0 +1,119 @@
+.container-footer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    bottom: 0;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    
+    .about-us {
+        grid-column: 1/4;
+        font-size: 1rem;
+        padding: 0.625rem;
+        color: white;
+        font-weight: bold;
+        justify-content: center;
+        align-items: center;
+    
+    .title-aboutus {
+        text-align: center;
+        padding: 3px;
+        font-size: 1rem;
+        color: white;
+    }
+    }
+
+    .logo-vulkan {
+        grid-column: 6/6;
+        padding: 0.625rem;
+
+      .logo-src {
+        width: 150px;
+        height: 150px;
+        margin: 5px;
+      }  
+    }
+
+    .container-csgo{
+        grid-column: 8/-1;
+        padding: 0.625rem;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    
+        .img-csgo {
+            width: 9.375rem;
+            height: 9.375rem;
+            margin: 5px;
+          }     
+    }
+    .span-copy{
+
+        grid-column: 1/-1;
+        width: 100%;
+        text-align: center;
+        padding: 0.3125rem;
+        color: white;
+    }
+
+}
+
+@media (max-width: 555px) {
+    .container-footer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    bottom: 0;
+    justify-content: center;
+
+    
+    .about-us {
+ 
+        font-size: 1rem;
+        padding: 0.625rem;
+        color: white;
+        font-weight: bold;
+        justify-content: center;
+        align-items: center;
+    
+    .title-aboutus {
+        text-align: center;
+        padding: 10px;
+        font-size: 1rem;
+        color: white;
+    }
+    }
+
+    .logo-vulkan {
+        padding: 0.625rem;
+
+      .logo-src {
+        width: 150px;
+        height: 150px;
+        margin: 5px;
+      }  
+    }
+
+    .container-csgo{
+        padding: 0.625rem;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    
+        .img-csgo {
+            width: 9.375rem;
+            height: 9.375rem;
+            margin: 5px;
+          }     
+    }
+    .span-copy{
+        width: 100%;
+        text-align: center;
+        padding: 0.3125rem;
+        color: white;
+    }
+
+}
+
+}

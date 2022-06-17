@@ -3,6 +3,7 @@ import {getFirestore, getDocs, collection, query, where} from 'firebase/firestor
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Footer from '../footer/Footer.jsx';
 
 import ItemList from '../Items/ItemList.jsx';
 import { LoadingComponent } from '../LoadingComp/LoadingComponent.jsx';
@@ -38,8 +39,8 @@ const ItemListContainer = () => {
     
     <div className='item-lista-grid'>
         {loading ? (<LoadingComponent/>) : <ItemList productos={productos}/>}
+    
     </div>
- 
 
   )
 }

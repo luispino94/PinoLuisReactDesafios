@@ -8,6 +8,7 @@ import Cart from './componentes/cart/Cart';
 import LogIn from './componentes/login/LogIn';
 import Home from './componentes/Users/Home';
 import UsersData from './componentes/UsersData/UsersData';
+import Footer from './componentes/footer/Footer';
 
 import './index.scss'
 
@@ -29,6 +30,7 @@ function App() {
           <Route path = '/usersdata' element = {<UsersData/>}/>
           <Route path='/*' element = {<Navigate to = '/' replace /> } />
         </Routes>
+      <Footer/>  
     </div>
     </CartContexProvider>  
   </BrowserRouter>

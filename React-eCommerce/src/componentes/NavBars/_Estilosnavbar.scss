@@ -18,11 +18,11 @@
     } 
     .navbar-vinculo {
         color: white;
-        font-size: 1.5rem;
-        text-align: end;
+        font-size: 1.7rem;
+        text-align: start;
         letter-spacing: 3px;
         font-family: var(--font-water);
-        grid-column: 6/6;   
+        grid-column: 3/5;   
     }
     .navbar-vinculo:hover {
         color: rgba(250, 141, 8, 0.936);
@@ -76,28 +76,39 @@
 
 //MEDIA QUERIES NAVBAR
 
-@media (max-width: 798px){
+@media (max-width: 978px){
 .navbar-nav {
 width: 100%;  
-    .container-nav {
+.container-nav {
     background-color: rgba(0, 0, 0, 0.886);
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
     align-items: center;
-    justify-content: space-around;
-    }
-}
+    justify-content: center;
+    
+    .nav-list{
+        grid-column:6/-1;
+        align-items: center;
+        text-align: center;
+        justify-content: space-between;
+        margin-bottom: 0.3125rem;
 
-
+        .nav-item {
+        margin: 0.312rem;
+        display: inline;
+        padding: 0.18rem;
+        font-size: 1rem;
+    }}       
 }
+}}
 
 @media (max-width:453px){
  .navbar-nav  { 
     width: 100%;
     .container-nav {
     justify-content: space-evenly;
-   
+    flex-wrap: wrap;
     .container-logo{
         flex-direction: row;
         justify-content: space-between;
