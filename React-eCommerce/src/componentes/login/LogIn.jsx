@@ -9,6 +9,7 @@ import logoView from '../../imagenes/fondologin.png';
 
 import './login.scss'
 import { useCartContext } from '../Contexto/cartContext';
+import { LoadingComponent } from '../LoadingComp/LoadingComponent';
 
 const auth = getAuth(getFirestoreApp());
 const firestore = getFirestore(getFirestoreApp());
@@ -16,15 +17,17 @@ const firestore = getFirestore(getFirestoreApp());
 const LogIn = () => {
 
   const [isRegister, setRegister] = useState(false);
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
+  const [loading, setLoading] = useState(false)
   const {user} = useCartContext();
   
   async function registerUser (email, password, rol){
   const infoUser = await createUserWithEmailAndPassword(auth, email, password,rol)
   .then ((userFirebase)=> {return userFirebase})
-  .catch (function(err){
- 
+  .catch ((err)=>{
     if(err.code == 'auth/email-already-in-use'){
       setEmailError ('Email ya está en uso')
      }
@@ -35,21 +38,43 @@ const LogIn = () => {
         setPasswordError('La contraseña debe tener al menos 6 carácteres')
      }
    })
+  
   const docuRef = doc(firestore, `usuario/${infoUser.user.uid}`);
   setDoc(docuRef, {correo:email, rol:rol})
+  clearErros();
+  }
+
+  const clearErros = () => {
+    setEmailError('');
+    setPasswordError('');
+  }
+  const handleLogin = () =>{
+    clearErros();
+    signInWithEmailAndPassword (auth,email,password)
+    .catch ((err) => {
+      switch(err.code){
+      case 'auth/invalid-email':
+      case 'auth/user-disabled':
+      case 'auth/user-not-found':
+      setEmailError(err.message);
+      break;
+      case 'auth/wrong-password':
+        setPasswordError(err.message);
+        break
+      }
+    })
+    .finally(()=> setLoading(true));
   }
 
   function submitHandler (e) {
     e.preventDefault ()
-   const email = e.target.elements.email.value;
-   const password = e.target.elements.password.value;
-   const rol = e.target.elements.rol.value;
+    const rol = e.target.elements.rol.value;
    if (isRegister){
      //registrar
-    registerUser (email, password, rol);      
+    registerUser (email, password,rol);      
    } else {
     //login
-    signInWithEmailAndPassword (auth,email,password)
+    handleLogin(auth,email,password)
    }
   }
  
@@ -66,7 +91,8 @@ const LogIn = () => {
         <div className='form-login'>
         <label className='label-Form'>
           Correo electrónico:
-        <input type="email" id="email" placeholder='Por favor complete el campo'
+        <input type="text" value={email} placeholder='Por favor complete el campo'
+        onChange={(e)=> setEmail(e.target.value)}
         required/>
         </label>
         <p className='errorMsg'>{emailError}</p>
@@ -75,8 +101,9 @@ const LogIn = () => {
         <div className='form-login'>
         <label className='label-Form'>
           Contraseña:
-          <input type="password" id="password" placeholder='Por favor complete el campo' 
-          required/>
+          <input type="password" value= {password} placeholder='Por favor complete el campo' 
+        onChange={(e)=> setPassword(e.target.value)}
+         required/>
         <p className='errorMsg'>{passwordError}</p>
         </label>
        
@@ -85,9 +112,9 @@ const LogIn = () => {
         <div className='form-login'>
         <label className='label-form'>
           Rol:
-          <select id="rol">
-            <option value="admin">Administrador</option>
-            <option value="user">Usuario</option>
+          <select id='rol'>
+            <option  value='admin'>Administrador</option>
+            <option  value='user' >Usuario</option>
           </select>
         </label>
         </div>
@@ -100,7 +127,9 @@ const LogIn = () => {
       <span className='spanLogin-Register' onClick={() => setRegister(!isRegister)}>
         {isRegister ? "Ya tengo una cuenta" : "Quiero registrarme"}
       </span >
+       {loading && <LoadingComponent/>}
       </div>
+
     }
     </>
     );
