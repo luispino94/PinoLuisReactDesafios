@@ -5,6 +5,7 @@
     margin-top: auto;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
     background-color: black;
 
     
@@ -49,13 +50,13 @@
             margin: 5px;
           }     
     }
-    .span-copy{
-
-        grid-column: 1/-1;
+    .span-copy{       
         width: 100%;
+        font-size: 1rem;
         text-align: center;
-        padding: 0.3125rem;
+        padding-bottom: 0.625rem;
         color: white;
+        grid-column: 6/6;
     }
 
 }

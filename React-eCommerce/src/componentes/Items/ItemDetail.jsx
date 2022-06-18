@@ -24,6 +24,7 @@ const onadd =(quantity) => {
         <div className='container-descripcion'>
           <h1 className='container-titulo-detail'>{producto.name}</h1>  
           <p className='container-categoria'>{producto.categoria}</p>
+          <p className='descripcion-item'>{producto.descripcion}</p>
           <span className='container-price-detail'>{`$ ${producto.price}`}</span>  
  
           { inputType ===  'itemCount'?

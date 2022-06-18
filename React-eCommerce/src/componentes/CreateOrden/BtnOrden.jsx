@@ -4,6 +4,7 @@ import { useForm } from './useForm';
 import { useState } from 'react';
 import { LoadingComponent } from '../LoadingComp/LoadingComponent';
 
+
 import swal from 'sweetalert';
 
 import './btnorden.scss';
@@ -67,6 +68,7 @@ async function createOrden (e){
       y resta el stock original que extrae el firebase y la cantidad que tengo en mi carrito*/  
 
 return (
+  <>  
   <div className='container-formulario'>
   <form  className='formulario' onSubmit={handleSubmit}>
     <h2 className='formulario-user-title'>{`Hola ${user.email}, completá el siguiente formulario para finalizar tu compra!`}</h2>
@@ -131,8 +133,10 @@ return (
       }
     </form>
       {loading && <LoadingComponent/>}
+  </div>
 
-</div>
+  </>
+
       )
       
 }

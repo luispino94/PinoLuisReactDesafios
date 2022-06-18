@@ -11,6 +11,7 @@ import UsersData from './componentes/UsersData/UsersData';
 import Footer from './componentes/footer/Footer';
 
 import './index.scss'
+import LogosTeam from './componentes/Teams/LogoTeams';
 
 
 
@@ -30,6 +31,7 @@ function App() {
           <Route path = '/usersdata' element = {<UsersData/>}/>
           <Route path='/*' element = {<Navigate to = '/' replace /> } />
         </Routes>
+      <LogosTeam/>
       <Footer/>  
     </div>
     </CartContexProvider>  

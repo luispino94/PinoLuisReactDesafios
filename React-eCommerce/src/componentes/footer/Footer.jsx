@@ -16,9 +16,8 @@ const Footer = () =>{
             </div>
             <div className='container-csgo'>
                 <img className='img-csgo' src={csgo} alt="#"/>             
-            </div>
-          
-            <span className='span-copy'>© Copyright 2022 Vulkan business </span>
+            </div>         
+            <p className='span-copy'>© Copyright 2022 Vulkan business </p>
         </footer>
     )
 }

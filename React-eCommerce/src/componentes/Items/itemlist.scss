@@ -8,7 +8,7 @@
     gap:5px;
     margin: 0 auto;
     margin-top: 10px;
-    height: 100%;
+
     margin-bottom: 1.875rem;
     
  //CARD EN ITEM
@@ -119,6 +119,13 @@ grid-template-areas:"imagen-grid descripcion-grid"
                  border-top: 2px solid rgb(255, 142, 3);
                  border-bottom: 2px solid rgb(255, 142, 3);
                  color: white;
+             }
+             .descripcion-item{
+                font-size: 1rem;
+                padding:0.625rem;
+                border-bottom: 2px solid rgb(255, 142, 3);
+                text-align: center;
+                color: white;
              }
              .container-price-detail{
                 font-size: 1.3rem;
