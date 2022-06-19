@@ -2,9 +2,10 @@ import logo from '../../imagenes/My project.png';
 import csgo from '../../imagenes/csgo.png';
 
 import './footer.scss';
+
+//Footer
+
 const Footer = () =>{
-
-
     return (
         
         <footer className="container-footer">

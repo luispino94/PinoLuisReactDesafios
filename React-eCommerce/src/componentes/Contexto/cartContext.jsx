@@ -3,19 +3,26 @@ import {createContext, useContext, useState, useEffect } from 'react';
 import {onAuthStateChanged, getAuth} from 'firebase/auth';
 import {doc, getDoc, getFirestore} from 'firebase/firestore'
 import getFirestoreApp from '../../firebase/config';
+import { useCart } from './useCart';
 
 const auth = getAuth(getFirestoreApp());
 const firestore = getFirestore(getFirestoreApp());
 
 const CartContext = createContext([])
-export const useCartContext = () => useContext(CartContext) 
+export const useCartContext = () => useContext(CartContext)
 
+/*Uno de los componentes más importantes.Éste componente me permite englobar todo mi app en un contexto
+donde exportolas funciones en cualquier otro componente donde le haga el destructurin. Esto permite
+leer las propiedades de cartContext y de esa manera
+mi app se puede comunicar de manera directa sin tener que estar pasando herencia de padre a hijo .*/
 
 const CartContexProvider = ({children}) => {
   //usuario LOGIN: 
   const [user, setUser] = useState(null);
+  //DESTRUCTURIN DE USECART
+  const {cartList,addToCart,deleteItemtoCart,totalQuantity,cartClear,totalPrice} = useCart();
 
-    //FUNCIÓN ASYNCRONICA QUE BUSCA Y TRAE EL ROL Y USUARIO.
+    //FUNCIÓN ASYNCRONICA QUE BUSCA , TRAE EL ROL Y USUARIO.
     async function getRol (uid){
       const docReference = doc (firestore,`usuario/${uid}`);
       const docCifrada = await getDoc ( docReference);
@@ -46,51 +53,6 @@ const CartContexProvider = ({children}) => {
     })
   }, [])
 
- const [cartList, setCarlist] = useState(()=>{
-   try {
-     const productInLocalStorage = localStorage.getItem('cartProducts');
-     return productInLocalStorage? JSON.parse (productInLocalStorage) : [];
-   } catch(error){
-     return [];
-   }
- });
-
- useEffect (()=>{
-   localStorage.setItem ('cartProducts', JSON.stringify(cartList))
- }, [cartList]);
-
- //FUNCION AGREGAR AL CARRITO
- function addToCart(item){
-    const inCart = cartList.findIndex(
-      (productInCart) => productInCart.id === item.id);
-    if (inCart !== -1){
-      const oldCant = cartList[inCart].cantidad
-      cartList[inCart].cantidad = oldCant + item.cantidad
-      setCarlist ([...cartList])
-        }else {
-      setCarlist ([... cartList,
-                  item])
-          }
-    }
-  
-  //FUNCIÓN BORRAR ITEM DEL CARRITO
-    const deleteItemtoCart = (id) =>{
-      setCarlist (cartList.filter(prod=> prod.id !== id))
-
-    }
-    //FUNCION CANTIDAD TOTAL
-    const cantidadTotal = ()=> {
-      return cartList.reduce ((contador,prod)=> contador += prod.cantidad,0)
-    }
-
-    //FUNCION PRECIO TOTAL
-    const precioTotal = ()=>{
-      return cartList.reduce ((contador,prod)=> contador + (prod.cantidad * prod.price),0)
-    }
-    //FUNCION VACIAR CARRITO 
-    const vaciarCarrito = () =>{
-      setCarlist ([])
-    }
 
   return (
     <CartContext.Provider value ={{
@@ -99,10 +61,9 @@ const CartContexProvider = ({children}) => {
         setUser,
         addToCart,
         deleteItemtoCart,
-        vaciarCarrito,
-        cantidadTotal,
-        precioTotal,
-
+        totalQuantity,
+        totalPrice,
+        cartClear
     }}>
         {children}
     </CartContext.Provider>

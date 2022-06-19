@@ -6,17 +6,17 @@ import { LoadingComponent } from '../LoadingComp/LoadingComponent.jsx';
 
 
 const ItemListDetail = () => {
-    const [producto, setProductos] = useState({})
-    const {detalleId} = useParams ()
+    const [product, setProducts] = useState({})
+    const {detailID} = useParams ()
     const [loading, setLoading] = useState (true)
   
   /*Con useEffect + los corchetes hacemos que cargue una sola vez y en segundo plano ( o sea, un array, se ejecuta una sola vez
     )  */ 
     useEffect(()=>{
       const db = getFirestore()
-      const dbQuery = doc (db, 'items', detalleId) //con "doc" estoy solicitando un solo documento 
+      const dbQuery = doc (db, 'items', detailID) //con "doc" estoy solicitando un solo documento 
       getDoc(dbQuery)
-      .then (resp =>setProductos({id: resp.id, ... resp.data()}))
+      .then (resp =>setProducts({id: resp.id, ... resp.data()}))
       .catch (err=>console.log (err))
       .finally(()=>setLoading(false))
     },[])
@@ -28,7 +28,7 @@ const ItemListDetail = () => {
             /* Acá termino importando todo lo que fui armando en mi item >itemList  */
            <>
             {loading ? (<LoadingComponent/>) :
-            <ItemDetail producto={producto}/>}
+            <ItemDetail product={product}/>}
           </>
 )}
 

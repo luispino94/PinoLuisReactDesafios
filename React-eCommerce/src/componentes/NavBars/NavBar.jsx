@@ -9,7 +9,7 @@ import  logo from '../../imagenes/My project.png'
 import './_Estilosnavbar.scss'
 
 function NavBar (){
-    const {cantidadTotal} = useCartContext()
+    const {totalQuantity} = useCartContext()
  return (
 <header>
 <nav className="navbar-nav">
@@ -25,7 +25,7 @@ function NavBar (){
             <Link to='/categoria/awp'><li className ="nav-item"><i className="nav-link">Awp</i></li></Link>   
             <Link to='/categoria/knife'><li className ="nav-item"><i className="nav-link">Knife</i></li></Link>           
             <li className ="nav-item"><LoginWidget/></li>
-            <li className ="nav-item"><CartWidget/><i className='icon-cant'>{cantidadTotal() !== 0 && cantidadTotal()}</i></li>
+            <li className ="nav-item"><CartWidget/><i className='icon-cant'>{totalQuantity() !== 0 && totalQuantity()}</i></li>
             
         </ul>   
     </div>

@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faLightbulb} from '@fortawesome/free-solid-svg-icons'
 import './btnInfo.scss';
 
+/*Componente que avisa al usuario que primero para finalizar la compra
+tiene que registrarse. Si no, no aparece el formulario.*/
+
 const BtnInfo = () => {
   return (
     <div className='container-info-login'>

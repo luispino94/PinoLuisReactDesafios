@@ -1,6 +1,8 @@
 import { Link} from 'react-router-dom';
 import './btnStock.scss'
 
+/*Componente donde se le informa al usuario que no hay stock en su carrito y se le muestra este mensaje.*/
+
 export default function BtnStock (){
 
     return (

@@ -4,36 +4,37 @@ import { useForm } from './useForm';
 import { useState } from 'react';
 import { LoadingComponent } from '../LoadingComp/LoadingComponent';
 
-
 import swal from 'sweetalert';
 
 import './btnorden.scss';
+/*Componente donde se genera la orden de compra pisando los datos del array vacio(FORM) en el formulario.*/
 
-const BtnOrden = () => {
- const {cartList, vaciarCarrito, precioTotal, user} = useCartContext();
+const CreateOrder = () => {
+ const {cartList, cartClear, totalPrice, user} = useCartContext();
  const {form,inputErrors,handleChange,handleBlur,handleSubmit} = useForm();
  const [loading, setLoading] = useState(false);
 
 //Funcion para crear orden e actualizar stock
-async function createOrden (e){
+
+async function createOrder (e){
   e.preventDefault()
 
-  let orden = {}
-
-  orden.buyer = form;
-  orden.total = precioTotal()
-  //acá se están pisando los datos creando un nuevo array
-  orden.items = cartList.map (cartItem =>{
+  let order = {}
+   //acá se están pisando los datos de form creando un nuevo array
+  order.buyer = form;
+  order.total = totalPrice()
+  //acá se está creando un nuevo array gracias al .map extrayendo los datos de cartList y creandolos en el cartItem.
+  order.items = cartList.map (cartItem =>{
     const id = cartItem.id
     const name = cartItem.name
-    const price = cartItem.price * cartItem.cantidad
+    const price = cartItem.price * cartItem.quantity
     return { id, name, price}
   } )
 
-  //Acá se crea la orden
+  //Acá se crea la order
   const db = getFirestore()
-  const queryOrden = collection(db,'orders')
-  addDoc (queryOrden, orden)
+  const queryorder = collection(db,'orders')
+  addDoc (queryorder, order)
   .then ((resp) =>
     swal({
     title: "Compra realizada!",
@@ -41,7 +42,7 @@ async function createOrden (e){
     icon: "success",
     }))
   .catch ((err)=>console.log (err))
-  .finally(()=>vaciarCarrito()
+  .finally(()=>cartClear()
   )
 
   //Acá se actualiza el stock de los items
@@ -49,25 +50,23 @@ async function createOrden (e){
 
     const queryCollectionStock = collection (dbStock, 'items')
 
-    const queryActualizarStock  = await query(
+    const queryUpdate  = await query(
       queryCollectionStock,
     where (documentId(), 'in', cartList.map(cart=> cart.id)) 
     )//'in' es un operador que me permite preguntar si dentro de lo que está declarado en el where está o no
     const batch = writeBatch(dbStock)
     
-    await getDocs (queryActualizarStock)
+    await getDocs (queryUpdate)
     .then (resp=> resp.docs.forEach(resp => batch.update(resp.ref,{  
-      stock: resp.data().stock - cartList.find (item => item.id === resp.id).cantidad 
+      stock: resp.data().stock - cartList.find (item => item.id === resp.id).quantity 
     })))
     .finally(()=>setLoading (true))
 
     batch.commit()
   }
-    /*getDocs tiene un array de los que cumplen la condición del where ,lo recorro con el forEach y utilizo el batch.update para actualizar 
-       con update.data (). stock extraigo el stock del nuevo listado y el cartfind de las cantidades con respecto a ese id 
-      y resta el stock original que extrae el firebase y la cantidad que tengo en mi carrito*/  
 
 return (
+  //Formulario para finalizar la compra
   <>  
   <div className='container-formulario'>
   <form  className='formulario' onSubmit={handleSubmit}>
@@ -127,7 +126,7 @@ return (
       </div>
       { (Object.keys(inputErrors).length === 0) && (form.name !=='') && (form.lastname !=='') && (form.phone !=='') && (form.direction !=='') ?  
       <button  className="btn-orden"
-      onClick={createOrden} >Realizar compra
+      onClick={createOrder} >Realizar compra
       </button>
        : ''
       }
@@ -141,4 +140,4 @@ return (
       
 }
 
-export default BtnOrden
+export default CreateOrder

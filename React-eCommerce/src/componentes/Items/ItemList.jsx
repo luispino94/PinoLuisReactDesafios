@@ -3,9 +3,9 @@ import Item from './Item.jsx'
 import './itemlist.scss'
 
 
-const ItemList = ({productos}) => {
+const ItemList = ({product}) => {
   return (
-    productos.map((prod) =>  <Item key={prod.id} prod={prod} />  )
+    product.map((prod) =>  <Item key={prod.id} prod={prod} />  )
   )
 }
 
