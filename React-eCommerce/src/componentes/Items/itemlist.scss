@@ -155,3 +155,33 @@ grid-template-areas:"imagen-grid descripcion-grid"
 }  
 
 
+@media (max-width:764px){
+    .card-grid {
+        width: 90%;
+        box-shadow: 1px 5px 15px 3px rgba(245, 244, 244, 0.308);;
+        background-color: rgba(0, 0, 0, 0.665);
+        margin: 2px auto;
+        margin-top: 5rem;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid white;        
+                //Estilos para la DESCRIPCIÓN
+                .container-descripcion{
+                    grid-area: descripcion-grid;
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    margin: 10px;
+        
+                    .container-titulo-detail{
+                        font-size: 1.5rem;
+                        padding: 0.625rem;
+                        color: white;
+                        text-align: center;
+                    }
+                }
+                .container-modelo3d{
+                height: 18.75rem;
+                }
+    }
+}
