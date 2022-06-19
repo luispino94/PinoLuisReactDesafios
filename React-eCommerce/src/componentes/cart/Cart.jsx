@@ -14,7 +14,9 @@ const Cart = () => {
 
 
   return (
-
+    /*/Div donde si la longitud del carrito es igual a 0, que muestre btnstock que dice que no hay nada en el carrito, 
+    si hay productos ,mostrame la lista. Y , si hay productos pero no está logeado entonces que primero que se registre
+    y si tiene productos en el stock y está logueado entonces ahí sí se muestra el formulario.*/
     
     <div className='list-cart-container'>
       { (cartList.length === 0) ? (<BtnStock/>) 

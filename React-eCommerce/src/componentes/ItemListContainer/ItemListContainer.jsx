@@ -7,13 +7,17 @@ import { useParams } from 'react-router-dom';
 import ItemList from '../Items/ItemList.jsx';
 import { LoadingComponent } from '../LoadingComp/LoadingComponent.jsx';
 
+/*Componente donde se recorre todos los item que hay en mi data base de Firestore */ 
+
 const ItemListContainer = () => {
   const [product, setProducts] = useState([])
   const [loading, setLoading] = useState (true)
   const {id} = useParams()
+
 /*Con useEffect + los corchetes hacemos que cargue una sola vez y en segundo plano ( o sea, un array, se ejecuta una sola vez
-  )  */ 
-   
+ salvo que detecte algún cambio */
+
+//Función para traer los datos de Firestore.    
   useEffect(()=>{
     const db = getFirestore()
     if (id){

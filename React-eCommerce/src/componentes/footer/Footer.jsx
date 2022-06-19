@@ -4,7 +4,6 @@ import csgo from '../../imagenes/csgo.png';
 import './footer.scss';
 
 //Footer
-
 const Footer = () =>{
     return (
         

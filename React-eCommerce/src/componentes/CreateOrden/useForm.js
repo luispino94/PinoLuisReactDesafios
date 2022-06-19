@@ -9,7 +9,7 @@ export const useForm = () =>{
 
     function validateForm(form){
       let inputErrors = {};
-      
+      //regexname son los parametros para mis validaciones
       let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
       let regexLetterandNumber = /^[a-zA-Z0-9_.-]*$/;
 
@@ -35,20 +35,20 @@ export const useForm = () =>{
       }
       return inputErrors
     };
-    
+    //Función donde se hace el destructing de form y se lo formatea para tener control total del input.
     const handleChange = (e) =>{
       setForm ({
         ...form,
         [e.target.name]:e.target.value
       })
     }
-
+     //Función para los errores.
     const handleBlur = (e) => {
       handleChange (e);
       setInputErrors(validateForm(form));
 
     }
-    
+     //Función para enviar el formulario.
     const handleSubmit = (e) => {
       e.preventDefault ();
       setInputErrors (validateForm (form));

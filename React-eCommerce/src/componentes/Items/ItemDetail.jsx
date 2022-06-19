@@ -4,18 +4,22 @@ import BtnChange from '../intercambiabilidad/BtnChange';
 import ItemCount from './ItemCount';
 import './itemlist.scss';
 
+/*Componente donde se muestra el detalle del item 
+se exporta addtocart del context para poder sumarlo al carrito de compras
+salteando la herencia*/
 
 const ItemDetail = ({product}) => {
   const {addToCart} = useCartContext();
   const [inputType, setInputType] = useState('itemCount');
   
-
+//Función para generar la intercambiabilidad de botón.
   function handleInputType() {
     setInputType('BtnChange');
-}
-const onadd =(quantity) => {
+  }
+//Función para agregar al producto con la cantidad  
+  const onadd =(quantity) => {
   addToCart({...product, quantity})
-}
+  }
 
   return (
                     /*CARD-DETAIL*/    
@@ -35,10 +39,8 @@ const onadd =(quantity) => {
         </div>
         <div className='container-modelo3d'>
           <div className='iframe-3d' dangerouslySetInnerHTML={{__html:product.modelo}}></div>
-        </div>
-                   
-    </div>     
-        
+        </div>                
+    </div>             
   )
 }
 
