@@ -49,7 +49,7 @@ const UsersData = () => {
         </div>  
         <div className='container-order-db'>
           <h2>Acá iría las ordenes realizadas</h2>    
-          <p>Pero como tuve un loop, me asusté y por las dudas después de que corrija el tp lo sigo jeje</p>    
+
         </div>
 
     </article>

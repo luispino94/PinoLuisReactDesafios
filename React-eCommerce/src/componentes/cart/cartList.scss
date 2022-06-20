@@ -54,3 +54,18 @@
         justify-content: space-around;
     }
 }
+
+//Media query 
+@media (max-width:500px){
+
+    .list-container-grid{  
+        width: 100%; 
+    .li-list-buy{
+        color: rgb(0, 0, 0);
+        text-align: center;
+        margin-left: 0.25rem;
+        padding: 0.1875rem;
+        font-weight: 600;
+        width: 100%;
+    }}
+}

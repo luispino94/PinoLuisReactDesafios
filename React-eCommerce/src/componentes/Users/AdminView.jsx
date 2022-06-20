@@ -11,7 +11,7 @@ import './adminstyle.scss';
 
 const auth = getAuth(getFirestoreApp());
 
-
+//Componente del admin 
 const AdminView = () => {
   const {user} = useCartContext();
   return (

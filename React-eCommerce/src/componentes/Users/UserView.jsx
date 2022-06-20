@@ -11,6 +11,8 @@ import './userstyle.scss';
 
 const auth = getAuth(getFirestoreApp());
 
+
+//Componente para el usuario
 const UserView = () => {
   const {user} = useCartContext();
   return (

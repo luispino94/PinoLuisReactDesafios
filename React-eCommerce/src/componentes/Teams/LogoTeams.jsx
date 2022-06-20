@@ -7,6 +7,8 @@ import logogoat from '../../imagenes/clanes/GOAT.png';
 
 import './logoteams.scss';
 
+//Logos de los sponsor
+
 export default function LogosTeam (){
 
     return (

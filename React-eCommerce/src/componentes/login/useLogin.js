@@ -43,19 +43,23 @@ export const useLogin = () => {
       clearErros();
       signInWithEmailAndPassword (auth,email,password)
       .catch ((err) => {
-        switch(err.code){
-        case 'auth/invalid-email':
-        case 'auth/user-disabled':
-        case 'auth/user-not-found':
-        setEmailError(err.message);
-        break;
-        case 'auth/wrong-password':
-          setPasswordError(err.message);
-          break
-        }
-      })
+        if(err.code == 'auth/invalid-email'){
+          setEmailError ('Email invalido')
+         }
+         else if (err.code == 'auth/user-disabled'){
+           setEmailError('Email deshabilitado')  
+         }
+         else if(err.code == 'auth/user-not-found'){
+            setEmailError('Usuario no encontrado')
+         }
+         if (err.code == 'auth/wrong-password'){
+              setPasswordError('Contraseña incorrecta')
+           }
+       })
       .finally(()=> setLoading(true));
     }
+
+
   
     function submitHandler (e) {
       e.preventDefault ()

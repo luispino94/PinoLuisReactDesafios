@@ -8,25 +8,15 @@ import { useCartContext } from '../Contexto/cartContext';
 import { LoadingComponent } from '../LoadingComp/LoadingComponent';
 import {useLogin} from "./useLogin";
 
-
+//Componente Login
 
 const LogIn = () => {
-
-  const { 
-    isRegister,
-    email,
-    password,
-    emailError,
-    passwordError,
-    loading,
-    setRegister,
-    setEmail,
-    setPassword,
-    submitHandler} = useLogin();
-
+//destructuring de useLogin y de useCartContext  
+  const { isRegister,email,password,emailError,passwordError,loading,setRegister,setEmail,setPassword,submitHandler} = useLogin();
   const {user} = useCartContext();
  
     return (
+      //Formulario Login
       <>
       {user ? <Home />
       : 

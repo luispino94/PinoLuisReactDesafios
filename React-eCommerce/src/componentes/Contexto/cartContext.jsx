@@ -25,15 +25,15 @@ const CartContexProvider = ({children}) => {
     //FUNCIÓN ASYNCRONICA QUE BUSCA , TRAE EL ROL Y USUARIO.
     async function getRol (uid){
       const docReference = doc (firestore,`usuario/${uid}`);
-      const docCifrada = await getDoc ( docReference);
-      const infoFinal = docCifrada.data().rol ;
-      return infoFinal
+      const docUser = await getDoc ( docReference);
+      const getInfo = docUser.data().rol ;
+      return getInfo
     }
-    function setUserWithFirebaseAndRol (usuarioFirebase){
-      getRol(usuarioFirebase.uid).then ((rol)=>{
+    function setUserWithFirebaseAndRol (userFirebases){
+      getRol(userFirebases.uid).then ((rol)=>{
         const userData = {
-          uid: usuarioFirebase.uid,
-          email: usuarioFirebase.email,
+          uid: userFirebases.uid,
+          email: userFirebases.email,
           rol: rol,
         };
         setUser (userData);
@@ -41,11 +41,11 @@ const CartContexProvider = ({children}) => {
     }
     /*Función de firebase para observar si el usuario está o no*/
     useEffect(()=>{
-    onAuthStateChanged(auth, (usuarioFirebase) => {
-      if (usuarioFirebase) {
+    onAuthStateChanged(auth, (userFirebases) => {
+      if (userFirebases) {
         if (!user) {
           //Login
-          setUserWithFirebaseAndRol(usuarioFirebase);
+          setUserWithFirebaseAndRol(userFirebases);
         }
       } else {
         setUser(null);
