@@ -12,7 +12,10 @@
 - **Crear un componente ItemDetail que al hacer click en Ver Detalle, muestre el detalle del producto con los campos generados en la base de datos. Además, deberá mostrar la posiblididad de aumentar o reducir la cantidad deseada del producto gracias al componente ItemCount.**
 - **CartContext: Contexto utilizado para manipular a nivel global el carrito de compras.**
 - **Carrito de compras(Icono): En la parte superior derecha del Navbar podemos ver el ícono de un carrito que permanecerá sin número cantidad hasta que se agregue algún producto al carrito. Clickeando en él se mostrará que no hay productos.**
-- **Carrito de compra(Componente): Es el encargado de mostrar la misma información que el Cary y además otorgar la posibilidad al cliente de que complete todos los datos correspondientes a la facturación**
+- **Carrito de compra(Componente): Es el encargado de mostrar la misma información que el Cary y además otorgar la posibilidad al cliente de que complete todos los datos correspondientes a la facturación.**
+-  **LOGIN: Se creó un login con la posibilidad de "Registrarse" tanto como Usuario (comprador) o Administrador("Dueño de la app") o "Ingresar"  en el caso de ya tener creado un usuario. El login fue creado con la siguiente finalidad:**
+    - **Usuario normal: Éste usuario está enfocado desde el lado del comprador,con el objetivo de que se registre para poder finalizar su compra.**
+    - **Usuario Admin : Éste usuario se crea con el objetivo de brindarle al cliente la posibilidad de ver los usuarios registrados en su app.La finalidad también es mostrar las compras realizadas.El cual aún está en proceso.A su vez,también existe la opción de eliminar o actualizar usuarios , el cual funciona pero por motivos de loops y contratiempos se decidió no brindar ésta opción por el momento.También se encuentra en proceso.**
 
 
 
